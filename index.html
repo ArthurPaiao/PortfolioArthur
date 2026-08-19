@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arthur Gomes Paião | Portfólio</title>
-    
+    <meta name="description" content="Portfólio de Arthur Gomes Paião — Engenheiro de Software focado em Dados, Automação e Desenvolvimento. Estagiário na Cielo, formação prevista para dez/2026.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Arthur Gomes Paião | Portfólio">
+    <meta property="og:description" content="Engenheiro de Software focado em Dados, Automação e Desenvolvimento. Estagiário na Cielo.">
+    <meta property="og:image" content="https://ui-avatars.com/api/?name=Arthur+Paiao&background=7c3aed&color=fff&size=512&bold=true">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Arthur Gomes Paião | Portfólio">
+    <meta name="twitter:description" content="Engenheiro de Software focado em Dados, Automação e Desenvolvimento.">
+    <meta name="twitter:image" content="https://ui-avatars.com/api/?name=Arthur+Paiao&background=7c3aed&color=fff&size=512&bold=true">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -40,6 +51,24 @@
                 }, 2000);
             });
         }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            menu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            menu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+        }
     </script>
 
     <script>
@@ -48,14 +77,6 @@
             theme: {
                 extend: {
                     colors: {
-                        purple: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            900: '#4c1d95',
-                        },
                         // Cores personalizadas para o modo escuro (Slate profundo)
                         dark: {
                             bg: '#0f172a',      // Slate 900
@@ -78,22 +99,23 @@
     </script>
     <style>body { font-family: sans-serif; }</style>
 </head>
-<body class="bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 antialiased selection:bg-purple-100 selection:text-purple-900 transition-colors duration-300">
+<body class="bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100 antialiased selection:bg-emerald-100 selection:text-emerald-900 transition-colors duration-300">
 
     <nav class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md z-50 border-b border-gray-100 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-lg md:text-xl font-bold tracking-tighter cursor-pointer truncate hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300" onclick="window.scrollTo(0,0)">
-                Portfólio <span class="text-purple-600">|</span> Arthur Gomes Paião
+            <div class="text-lg md:text-xl font-bold tracking-tighter cursor-pointer truncate hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300" onclick="window.scrollTo(0,0)">
+                Portfólio <span class="text-emerald-600">|</span> Arthur Gomes Paião
             </div>
 
             <div class="hidden md:flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300">
                 
-                <a href="#hero" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:text-purple-600 dark:hover:text-purple-400 hover:-translate-y-1 hover:shadow-md">Início</a>
-                <a href="#sobre" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:text-purple-600 dark:hover:text-purple-400 hover:-translate-y-1 hover:shadow-md">Sobre</a>
-                <a href="#skills" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:text-purple-600 dark:hover:text-purple-400 hover:-translate-y-1 hover:shadow-md">Competências</a>
-                <a href="#experiencia" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:text-purple-600 dark:hover:text-purple-400 hover:-translate-y-1 hover:shadow-md">Experiência</a>
+                <a href="#hero" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 hover:-translate-y-1 hover:shadow-md">Início</a>
+                <a href="#sobre" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 hover:-translate-y-1 hover:shadow-md">Sobre</a>
+                <a href="#skills" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 hover:-translate-y-1 hover:shadow-md">Competências</a>
+                <a href="#projetos" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 hover:-translate-y-1 hover:shadow-md">Projetos</a>
+                <a href="#experiencia" class="px-4 py-2 rounded-full transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 hover:-translate-y-1 hover:shadow-md">Experiência</a>
 
-                <a href="#contato" class="ml-2 bg-black dark:bg-white text-white dark:text-black px-6 py-2.5 rounded-full transition-all duration-300 hover:bg-gray-900 dark:hover:bg-gray-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-200/50 dark:hover:shadow-purple-900/50">
+                <a href="#contato" class="ml-2 bg-black dark:bg-white text-white dark:text-black px-6 py-2.5 rounded-full transition-all duration-300 hover:bg-gray-900 dark:hover:bg-gray-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-200/50 dark:hover:shadow-emerald-900/50">
                     Contato
                 </a>
 
@@ -110,16 +132,26 @@
                     <i data-lucide="sun" class="hidden dark:block w-5 h-5"></i>
                     <i data-lucide="moon" class="block dark:hidden w-5 h-5"></i>
                 </button>
-                <div class="text-gray-600 dark:text-gray-300 cursor-pointer">
-                    <i data-lucide="menu"></i>
-                </div>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 p-1" aria-label="Abrir menu">
+                    <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+                    <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+                </button>
             </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col gap-1 px-6 pb-4 pt-2 border-t border-gray-100 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95">
+            <a href="#sobre" onclick="closeMobileMenu()" class="px-4 py-3 rounded-lg transition-colors hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400">Sobre</a>
+            <a href="#skills" onclick="closeMobileMenu()" class="px-4 py-3 rounded-lg transition-colors hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400">Competências</a>
+            <a href="#projetos" onclick="closeMobileMenu()" class="px-4 py-3 rounded-lg transition-colors hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400">Projetos</a>
+            <a href="#experiencia" onclick="closeMobileMenu()" class="px-4 py-3 rounded-lg transition-colors hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400">Experiência</a>
+            <a href="#certificacoes" onclick="closeMobileMenu()" class="px-4 py-3 rounded-lg transition-colors hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400">Certificações</a>
+            <a href="#contato" onclick="closeMobileMenu()" class="mt-2 text-center bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-lg font-medium">Contato</a>
         </div>
     </nav>
 
     <section id="hero" class="pt-32 pb-20 px-6 max-w-4xl mx-auto text-center min-h-screen flex flex-col justify-center">
         
-        <div class="animate-[fadeInUp_1s_ease-out] mx-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-800 text-sm text-gray-600 dark:text-gray-300 mb-8 hover:border-purple-200 dark:hover:border-purple-900 transition-colors cursor-default">
+        <div class="animate-[fadeInUp_1s_ease-out] mx-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-800 text-sm text-gray-600 dark:text-gray-300 mb-8 hover:border-emerald-200 dark:hover:border-emerald-900 transition-colors cursor-default">
             <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -129,24 +161,29 @@
 
         <h1 class="animate-[fadeInUp_1.2s_ease-out] text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-gray-900 dark:text-white">
             Arthur Gomes
-            <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 dark:from-purple-400 dark:to-blue-400">
+            <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-500 dark:from-emerald-400 dark:to-blue-400">
                 Paião
             </span>
         </h1>
 
         <p class="animate-[fadeInUp_1.4s_ease-out] text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
-            Estudante de Engenharia de Software apaixonado por IA e Programação.
-            Criando aplicações inovadoras e eficientes com foco em automação e dados.
+            Graduando em Engenharia de Software com foco em Dados, Automação & Desenvolvimento.
+            Transformando processos manuais em soluções eficientes com Python, SQL e Power Automate.
         </p>
 
         <div class="animate-[fadeInUp_1.6s_ease-out] flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
-            <a href="https://github.com/ArthurPaiao" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
-                <i data-lucide="github" class="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors"></i>
-                <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">GitHub</span>
+            <a href="/cv.pdf" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-xl hover:bg-gray-900 dark:hover:bg-gray-200 hover:shadow-xl hover:shadow-emerald-200/50 dark:hover:shadow-emerald-900/50 hover:-translate-y-1 transition-all duration-300 group font-medium">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span>Baixar Currículo</span>
+            </a>
+
+            <a href="https://github.com/ArthurPaiao" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl hover:border-emerald-300 dark:hover:border-emerald-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.78 1.08.78 2.17v3.22c0 .3.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+                <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">GitHub</span>
             </a>
             
             <a href="https://www.linkedin.com/in/arthur-pai%C3%A3o-1302a5274/" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
-                <i data-lucide="linkedin" class="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"></i>
+                <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
                 <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">LinkedIn</span>
             </a>
 
@@ -157,7 +194,7 @@
         </div>
 
         <div class="mt-20 flex justify-center animate-bounce">
-            <a href="#sobre" class="text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            <a href="#sobre" class="text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                 <i data-lucide="chevron-down" class="w-8 h-8"></i>
             </a>
         </div>
@@ -166,7 +203,7 @@
     <section id="sobre" class="py-24 bg-white dark:bg-slate-950 border-t border-gray-50 dark:border-slate-900">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div>
-                <span class="text-purple-600 dark:text-purple-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Sobre</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Sobre</span>
                 <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Transformando dados em resultados</h2>
                 
                 <div class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed space-y-6 mb-12">
@@ -175,61 +212,75 @@
                 </div>
 
                 <div class="flex flex-wrap gap-6 border-t border-gray-100 dark:border-slate-800 pt-8">
-                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-purple-100 dark:hover:border-slate-700">
-                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">2+</div>
+                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-emerald-100 dark:hover:border-slate-700">
+                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">2+</div>
                         <div class="text-gray-600 dark:text-gray-400 text-sm">Anos Exp.</div>
                     </div>
-                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-purple-100 dark:hover:border-slate-700">
-                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">3</div>
+                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-emerald-100 dark:hover:border-slate-700" title="Português (nativo), Espanhol (avançado), Inglês (intermediário)">
+                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">3</div>
                         <div class="text-gray-600 dark:text-gray-400 text-sm">Idiomas</div>
                     </div>
-                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-purple-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-purple-100 dark:hover:border-slate-700">
-                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Power BI</div>
+                    <div class="group p-4 rounded-xl transition-all duration-300 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:shadow-md hover:-translate-y-1 cursor-default border border-transparent hover:border-emerald-100 dark:hover:border-slate-700">
+                        <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Power BI</div>
                         <div class="text-gray-600 dark:text-gray-400 text-sm">Especialidade</div>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-900 transition-all duration-300">
-                    <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-900 transition-all duration-300">
+                    <div class="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                         <i data-lucide="code-2" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Linguagens</h3>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Linguagens</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Python</span>
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Java</span>
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">SQL</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">JavaScript</span>
                     </div>
                 </div>
-                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-900 transition-all duration-300">
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-900 transition-all duration-300">
                     <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                         <i data-lucide="database" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Dados & BI</h3>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Dados & BI</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Power BI</span>
-                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">PySpark</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Databricks</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">AWS</span>
                     </div>
                 </div>
-                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-900 transition-all duration-300">
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-900 transition-all duration-300">
                     <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center text-green-600 dark:text-green-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                         <i data-lucide="zap" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Automação</h3>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Automação</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Power Automate</span>
-                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">VBA</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">RPA</span>
                     </div>
                 </div>
-                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-900 transition-all duration-300">
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-900 transition-all duration-300">
                     <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center text-orange-600 dark:text-orange-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                        <i data-lucide="trello" class="w-5 h-5"></i>
+                        <i data-lucide="layers" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Metodologias</h3>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Frameworks & APIs</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Spring Boot</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">React</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Docker</span>
+                    </div>
+                </div>
+                <div class="group bg-white dark:bg-slate-900 p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-900 transition-all duration-300 col-span-2">
+                    <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center text-pink-600 dark:text-pink-400 mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                        <i data-lucide="kanban" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Metodologias</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Scrum</span>
                         <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Agile</span>
+                        <span class="px-2 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Six Sigma</span>
                     </div>
                 </div>
             </div>
@@ -239,32 +290,40 @@
     <section id="skills" class="py-24 bg-white dark:bg-slate-950 border-t border-gray-50 dark:border-slate-900">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-16">
-                <span class="text-purple-600 dark:text-purple-400 font-semibold tracking-wider text-sm uppercase">Competências</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase">Competências</span>
                 <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-2">Principais habilidades</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col hover:-translate-y-1">
-                    <div class="relative h-48 overflow-hidden bg-gray-100 dark:bg-slate-800">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100">
-                    </div>
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Automação de Processos</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Desenvolvimento de bots e automações utilizando Power Automate e VBA para otimizar processos manuais.</p>
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Automação de Processos</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Bots e scripts para eliminar trabalho manual repetitivo.</p>
+                        <div class="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            <span>10h/semana economizadas com bot no Outlook</span>
+                        </div>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Power Automate</span>
-                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">VBA</span>
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">RPA</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col hover:-translate-y-1">
-                    <div class="relative h-48 overflow-hidden bg-gray-100 dark:bg-slate-800">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100">
-                    </div>
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Dashboards Analíticos</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Criação de dashboards em Power BI para monitoramento de KPI's e análises estratégicas.</p>
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Dashboards Analíticos</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Dashboards em Power BI para monitoramento de KPI's e análises estratégicas.</p>
+                        <div class="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            <span>3 KPIs monitorados em tempo real para a liderança</span>
+                        </div>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Power BI</span>
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">SQL</span>
@@ -272,29 +331,94 @@
                     </div>
                 </div>
 
-                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col hover:-translate-y-1">
-                    <div class="relative h-48 overflow-hidden bg-gray-100 dark:bg-slate-800">
-                        <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100">
-                    </div>
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Migração de Dados</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Auxílio na migração de bases para DataBricks e extração de informações do AWS Athena.</p>
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="database" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Migração de Dados</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Migração de bases para Databricks e extração via AWS.</p>
+                        <div class="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            <span>40% menos tempo na elaboração de materiais (ABECS)</span>
+                        </div>
                         <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">DataBricks</span>
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Databricks</span>
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Python</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col hover:-translate-y-1">
-                    <div class="relative h-48 overflow-hidden bg-gray-100 dark:bg-slate-800">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 opacity-90 hover:opacity-100">
-                    </div>
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col">
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Desenvolvimento Web</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Criação de interfaces modernas e funcionais utilizando as melhores práticas do mercado.</p>
+                        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center text-orange-600 dark:text-orange-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="code-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Desenvolvimento Web</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Interfaces e APIs modernas com foco em boas práticas de mercado.</p>
+                        <div class="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            <span>3 projetos próprios em produção (Java, React, IA)</span>
+                        </div>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Spring Boot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="py-24 bg-gray-50 dark:bg-slate-900/50 border-t border-gray-50 dark:border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase">Projetos</span>
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-2">O que já construí</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Fila de Triagem Hospitalar</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">Aplicação em Java para reduzir o tempo de espera em filas de triagem, pensada para atender hospitais e pacientes com mais agilidade.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Java</span>
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">POO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="leaf" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">GreenTech</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">Site com a API do Google Maps para localizar pontos de descarte sustentável de eletrônicos, mapeando 8 locais na região de São Paulo.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Google Maps API</span>
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                            <i data-lucide="bot" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Agente de IA para Contratos</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">Agente com a API Gemini para alertar vencimento de contratos, com dashboard de monitoramento e análise automática.</p>
+                        <div class="flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            <span>-100% risco de perda de prazos</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Gemini API</span>
                             <span class="px-3 py-1 bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-md border border-gray-200 dark:border-slate-700">Python</span>
                         </div>
                     </div>
@@ -303,47 +427,127 @@
         </div>
     </section>
 
-    <section id="experiencia" class="py-24 bg-gray-50 dark:bg-slate-900/50">
+    <section id="experiencia" class="py-24 bg-gray-50 dark:bg-slate-900/50 border-t border-gray-100 dark:border-slate-800">
         <div class="max-w-4xl mx-auto px-6">
             <div class="mb-16">
-                <span class="text-purple-600 dark:text-purple-400 font-semibold tracking-wider text-sm uppercase">Experiência</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase">Experiência</span>
                 <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-2">Onde trabalhei</h2>
             </div>
 
-            <div class="border-l-2 border-purple-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12">
+            <div class="border-l-2 border-emerald-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12">
                 <div class="relative pl-8 md:pl-12 group">
-                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-purple-200 dark:border-slate-700 group-hover:border-purple-500 dark:group-hover:border-purple-400 transition-colors shadow-sm">
+                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-emerald-200 dark:border-slate-700 group-hover:border-emerald-500 dark:group-hover:border-emerald-400 transition-colors shadow-sm">
                         <i data-lucide="briefcase" class="w-3 h-3"></i>
                     </span>
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400">Nov 2025 — Presente</div>
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white">Estagiário em Intercâmbio e Fee</h3>
-                        <div class="text-purple-600 dark:text-purple-400 font-semibold mb-2">Cielo</div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Manutenção de dashboards em Power BI, auxílio na migração de bases de dados para DataBricks, resolução de tickets com extração de dados do Athena (AWS).</p>
+                        <div class="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Cielo</div>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed space-y-2 list-disc list-outside ml-4">
+                            <li>Scripts em Python que reduziram em <span class="font-semibold text-gray-900 dark:text-white">40%</span> o tempo de elaboração de materiais para a ABECS, eliminando retrabalho manual.</li>
+                            <li>Script em SQL para identificar lacunas entre subadquirentes, mapeando inconsistências que resultaram em recuperação de valores.</li>
+                            <li>Apoio na migração de bases para Databricks e extração via AWS, integradas ao Power BI.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="relative pl-8 md:pl-12 group">
-                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-purple-200 dark:border-slate-700 group-hover:border-purple-500 dark:group-hover:border-purple-400 transition-colors shadow-sm">
+                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-emerald-200 dark:border-slate-700 group-hover:border-emerald-500 dark:group-hover:border-emerald-400 transition-colors shadow-sm">
                         <i data-lucide="briefcase" class="w-3 h-3"></i>
                     </span>
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400">Nov 2024 — Nov 2025</div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Estagiário em Relacionamento</h3>
-                        <div class="text-purple-600 dark:text-purple-400 font-semibold mb-2">Cielo</div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Comunicação com stakeholders, automatização de processos, criação de dashboards Power BI para KPI's e desenvolvimento de bot para Outlook.</p>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Estagiário em Relacionamento com Bandeiras</h3>
+                        <div class="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Cielo</div>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed space-y-2 list-disc list-outside ml-4">
+                            <li>Bot em Power Automate integrado ao Outlook, eliminando <span class="font-semibold text-gray-900 dark:text-white">10h/semana</span> de trabalho manual na distribuição de boletins.</li>
+                            <li>Dashboards em Power BI para monitorar 3 KPIs da área, com visibilidade em tempo real para a liderança.</li>
+                            <li>Otimização de 2 processos obsoletos com low-code, reduzindo o tempo de execução em <span class="font-semibold text-gray-900 dark:text-white">25%</span>.</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="relative pl-8 md:pl-12 group">
-                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-purple-600 dark:text-purple-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-purple-200 dark:border-slate-700 group-hover:border-purple-500 dark:group-hover:border-purple-400 transition-colors shadow-sm">
+                    <span class="absolute -left-[13px] top-0 bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 w-7 h-7 rounded-full flex items-center justify-center border-2 border-emerald-200 dark:border-slate-700 group-hover:border-emerald-500 dark:group-hover:border-emerald-400 transition-colors shadow-sm">
                         <i data-lucide="briefcase" class="w-3 h-3"></i>
                     </span>
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2 text-xs font-mono text-gray-500 dark:text-gray-400">Set 2023 — Out 2024</div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Jovem Aprendiz</h3>
-                        <div class="text-purple-600 dark:text-purple-400 font-semibold mb-2">Johnson & Johnson</div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Automatização de planilhas e processos, criação de designs no Canva, participação no processo de recrutamento.</p>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Jovem Aprendiz — Talent Acquisition</h3>
+                        <div class="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Johnson & Johnson</div>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed space-y-2 list-disc list-outside ml-4">
+                            <li>Apoio de ponta a ponta no programa de estágio, contribuindo para a contratação de <span class="font-semibold text-gray-900 dark:text-white">40 estagiários</span> no ciclo.</li>
+                            <li>Automatização de planilhas e processos manuais no Excel, reduzindo o tempo de execução em <span class="font-semibold text-gray-900 dark:text-white">50%</span>.</li>
+                            <li>Representou a J&J na Feira de Estágios da USP, apresentando o programa a 200 candidatos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificacoes" class="py-24 bg-white dark:bg-slate-950 border-t border-gray-50 dark:border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase">Certificações</span>
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-2">Aprendizado contínuo</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="award" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">AI Intelligence Fundamentals</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">IBM</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="award" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Six Sigma White Belt</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Certificação de processos</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="award" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Transformação Digital</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Santander</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="git-branch" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Git e GitHub: Formação Básica</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">LinkedIn Learning</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="code" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Python do Básico ao Avançado</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Udemy</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="coffee" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Java Completo: POO + Projetos</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Udemy — Nelio Alves</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Complete Full-Stack Web Bootcamp</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Udemy — Dr. Angela Yu</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-slate-800 hover:border-emerald-200 dark:hover:border-emerald-900 hover:shadow-md transition-all duration-300">
+                    <div class="w-10 h-10 shrink-0 bg-emerald-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-emerald-600 dark:text-emerald-400"><i data-lucide="server" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="font-semibold text-gray-900 dark:text-white text-sm">Spring Boot Expert: JPA, REST, JWT, OAuth2</div>
+                        <div class="text-gray-500 dark:text-gray-400 text-xs">Udemy — Douglas Sousa</div>
                     </div>
                 </div>
             </div>
@@ -353,7 +557,7 @@
     <section id="contato" class="py-24 bg-white dark:bg-slate-950 border-t border-gray-50 dark:border-slate-900">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
             <div>
-                <span class="text-purple-600 dark:text-purple-400 font-semibold tracking-wider text-sm uppercase">Contato</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold tracking-wider text-sm uppercase">Contato</span>
                 <h2 class="text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-6">Vamos trabalhar juntos</h2>
                 <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-10">
                     Tem um projeto em mente? Adoraria ouvir sobre ele. Seja uma nova feature, 
@@ -363,13 +567,13 @@
                     <div class="flex items-center gap-4 group p-3 rounded-lg transition-colors -ml-3 cursor-pointer" 
                          data-email="paiao2057@gmail.com" 
                          onclick="copyEmail(this)">
-                        <div class="p-3 bg-purple-50 dark:bg-slate-800 rounded-lg text-purple-600 dark:text-purple-400 group-hover:bg-purple-100 dark:group-hover:bg-slate-700 transition-colors">
+                        <div class="p-3 bg-emerald-50 dark:bg-slate-800 rounded-lg text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-100 dark:group-hover:bg-slate-700 transition-colors">
                             <i data-lucide="mail"></i>
                         </div>
-                        <span class="text-gray-700 dark:text-gray-300 font-medium group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">paiao2057@gmail.com</span>
+                        <span class="text-gray-700 dark:text-gray-300 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">paiao2057@gmail.com</span>
                     </div>
                     <div class="flex items-center gap-4 p-3 -ml-3">
-                        <div class="p-3 bg-purple-50 dark:bg-slate-800 rounded-lg text-purple-600 dark:text-purple-400"><i data-lucide="map-pin"></i></div>
+                        <div class="p-3 bg-emerald-50 dark:bg-slate-800 rounded-lg text-emerald-600 dark:text-emerald-400"><i data-lucide="map-pin"></i></div>
                         <span class="text-gray-700 dark:text-gray-300 font-medium">São Paulo, Brasil</span>
                     </div>
                 </div>
@@ -379,17 +583,17 @@
                 <form action="https://formspree.io/f/xnjbpzaz" method="POST" class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome</label>
-                        <input type="text" name="name" placeholder="Seu nome" required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white">
+                        <input type="text" name="name" placeholder="Seu nome" required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                        <input type="email" name="email" placeholder="seu@email.com" required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white">
+                        <input type="email" name="email" placeholder="seu@email.com" required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-white">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mensagem</label>
-                        <textarea name="message" rows="4" placeholder="Conte-me sobre seu projeto..." required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 dark:focus:ring-purple-900 outline-none transition-all resize-none bg-white dark:bg-slate-800 text-gray-900 dark:text-white"></textarea>
+                        <textarea name="message" rows="4" placeholder="Conte-me sobre seu projeto..." required class="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-slate-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none transition-all resize-none bg-white dark:bg-slate-800 text-gray-900 dark:text-white"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600 text-white font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-purple-200 dark:shadow-none">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-200 dark:shadow-none">
                         <i data-lucide="send" class="w-4 h-4"></i> Enviar Mensagem
                     </button>
                 </form>
@@ -400,15 +604,12 @@
     <footer class="border-t border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-950 py-12 text-center">
         <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-6 text-gray-500 dark:text-gray-400">
             <div class="flex flex-col items-center gap-4">
-                <div class="flex items-center justify-center gap-1 text-sm">
-                    Feito com <i data-lucide="heart" class="w-4 h-4 text-red-500 fill-red-500"></i> e muito café
-                </div>
                 <div class="flex gap-4">
-                    <a href="https://github.com/ArthurPaiao" target="_blank" class="p-2 bg-gray-50 dark:bg-slate-900 rounded-full hover:bg-purple-50 dark:hover:bg-slate-800 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                        <i data-lucide="github" class="w-5 h-5"></i>
+                    <a href="https://github.com/ArthurPaiao" target="_blank" class="p-2 bg-gray-50 dark:bg-slate-900 rounded-full hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.78 1.08.78 2.17v3.22c0 .3.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
                     </a>
                     <a href="https://www.linkedin.com/in/arthur-pai%C3%A3o-1302a5274/" target="_blank" class="p-2 bg-gray-50 dark:bg-slate-900 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
                     </a>
                 </div>
             </div>
