@@ -59,6 +59,17 @@
   --animate-marquee: marquee 40s linear infinite;
 }
 
+/* Tons derivados de --tint (cor do projeto) para as prévias ilustrativas */
+@utility tint-strong {
+  background-color: color-mix(in oklab, var(--tint) 75%, transparent);
+}
+@utility tint-soft {
+  background-color: color-mix(in oklab, var(--tint) 18%, transparent);
+}
+@utility tint-ring {
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--tint) 22%, transparent);
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

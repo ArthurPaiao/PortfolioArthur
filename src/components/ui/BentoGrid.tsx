@@ -2,11 +2,17 @@
 
 import type { MouseEvent, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 // Adaptado do "Bento Grid" de kokonutd no 21st.dev.
 // Mudanças: tokens de tema no lugar de cores fixas, spotlight que segue o cursor,
-// linha de resultado, link opcional e entrada animada no scroll.
+// área de prévia, linha de resultado, links de ação e entrada animada no scroll.
+
+export interface BentoLink {
+  label: string;
+  href: string;
+  icon: ReactNode;
+}
 
 export interface BentoItem {
   title: string;
@@ -17,8 +23,9 @@ export interface BentoItem {
   tags?: string[];
   meta?: string;
   result?: string;
-  href?: string;
-  cta?: string;
+  /** Renderizada no topo do card (ou ao lado, nos cards largos em telas grandes). */
+  preview?: ReactNode;
+  links?: BentoLink[];
   colSpan?: 1 | 2;
   hasPersistentHover?: boolean;
 }
@@ -31,18 +38,17 @@ function trackSpotlight(e: MouseEvent<HTMLElement>) {
 
 export function BentoCard({ item, index }: { item: BentoItem; index: number }) {
   const persistent = item.hasPersistentHover;
-  const Wrapper = item.href ? motion.a : motion.div;
+  const wide = item.colSpan === 2;
 
   return (
-    <Wrapper
-      {...(item.href ? { href: item.href, target: "_blank", rel: "noreferrer" } : {})}
+    <motion.article
       onMouseMove={trackSpotlight}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={`group relative flex flex-col p-6 rounded-2xl overflow-hidden border bg-surface transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[0_8px_30px_var(--glow)] ${
-        item.colSpan === 2 ? "md:col-span-2" : ""
+      className={`group relative flex flex-col gap-6 p-5 rounded-2xl overflow-hidden border bg-surface transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[0_8px_30px_var(--glow)] ${
+        wide ? "md:col-span-2 lg:flex-row lg:items-stretch" : ""
       } ${persistent ? "border-line-strong shadow-[0_8px_30px_var(--glow)]" : "border-line"}`}
     >
       {/* Spotlight que segue o cursor */}
@@ -66,8 +72,14 @@ export function BentoCard({ item, index }: { item: BentoItem; index: number }) {
         }}
       />
 
-      <div className="relative flex flex-col h-full">
-        <div className="flex items-center justify-between gap-3 mb-5">
+      {item.preview && (
+        <div className={`relative shrink-0 ${wide ? "h-44 lg:h-auto lg:w-[44%] lg:order-2" : "h-44"}`}>
+          {item.preview}
+        </div>
+      )}
+
+      <div className="relative flex flex-col flex-1 min-w-0 px-1 pb-1">
+        <div className="flex items-center justify-between gap-3 mb-4">
           <div
             className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 ${
               item.iconClassName ?? "bg-surface-2 text-fg"
@@ -96,9 +108,9 @@ export function BentoCard({ item, index }: { item: BentoItem; index: number }) {
           </div>
         )}
 
-        <div className="mt-5 flex items-end justify-between gap-3">
-          <div className="flex flex-wrap gap-1.5">
-            {item.tags?.map((tag) => (
+        {item.tags && (
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {item.tags.map((tag) => (
               <span
                 key={tag}
                 className="font-mono text-[11px] px-2 py-1 rounded-md bg-surface-2 text-muted border border-line"
@@ -107,15 +119,26 @@ export function BentoCard({ item, index }: { item: BentoItem; index: number }) {
               </span>
             ))}
           </div>
-          {item.href && (
-            <span className="shrink-0 inline-flex items-center gap-1 text-xs text-subtle opacity-0 group-hover:opacity-100 group-hover:text-accent transition-opacity">
-              {item.cta ?? "Ver"}
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </span>
-          )}
-        </div>
+        )}
+
+        {item.links && item.links.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {item.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-bg text-xs font-medium text-fg hover:border-accent hover:text-accent transition-colors"
+              >
+                {link.icon}
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-    </Wrapper>
+    </motion.article>
   );
 }
 

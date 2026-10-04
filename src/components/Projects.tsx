@@ -1,12 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Bot, HeartPulse, Landmark, LayoutTemplate, Leaf, LucideIcon, ShoppingCart } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  ExternalLink,
+  HeartPulse,
+  Landmark,
+  LayoutTemplate,
+  Leaf,
+  LucideIcon,
+  ShoppingCart,
+} from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 import { profile } from "@/data/profile";
 import { GithubIcon } from "./BrandIcons";
 import SectionHeader from "./SectionHeader";
-import { BentoGrid, type BentoItem } from "./ui/BentoGrid";
+import { BentoGrid, type BentoItem, type BentoLink } from "./ui/BentoGrid";
+import ProjectPreview from "./ui/ProjectPreview";
 
 const iconMap: Record<Project["icon"], LucideIcon> = {
   "heart-pulse": HeartPulse,
@@ -26,8 +37,25 @@ const colorMap: Record<Project["icon"], string> = {
   layout: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
 };
 
+// Cor de destaque de cada projeto, usada nas prévias ilustrativas
+const tintMap: Record<Project["icon"], string> = {
+  "shopping-cart": "#0ea5e9",
+  landmark: "#f59e0b",
+  "heart-pulse": "#f43f5e",
+  leaf: "#22c55e",
+  bot: "#8b5cf6",
+  layout: "#3b82f6",
+};
+
 const items: BentoItem[] = projects.map((proj) => {
   const Icon = iconMap[proj.icon];
+  const links: BentoLink[] = [];
+  if (proj.githubUrl) {
+    links.push({ label: "Código", href: proj.githubUrl, icon: <GithubIcon className="w-3.5 h-3.5" /> });
+  }
+  if (proj.demoUrl) {
+    links.push({ label: "Ver online", href: proj.demoUrl, icon: <ExternalLink className="w-3.5 h-3.5" /> });
+  }
   return {
     title: proj.title,
     description: proj.description,
@@ -36,8 +64,8 @@ const items: BentoItem[] = projects.map((proj) => {
     status: proj.status,
     tags: proj.stack,
     result: proj.result,
-    href: proj.githubUrl,
-    cta: "Ver código",
+    preview: <ProjectPreview project={proj} tint={tintMap[proj.icon]} className="h-full" />,
+    links,
     colSpan: proj.featured ? 2 : 1,
     hasPersistentHover: proj.slug === projects[0].slug,
   };
