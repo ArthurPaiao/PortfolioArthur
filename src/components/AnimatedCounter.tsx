@@ -10,7 +10,7 @@ type Props = {
 
 export default function AnimatedCounter({ value, className }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const isInView = useInView(ref, { once: true });
   const numericMatch = value.match(/\d+/);
   const numericValue = numericMatch ? parseInt(numericMatch[0], 10) : 0;
   const suffix = value.replace(/^\d+/, "");

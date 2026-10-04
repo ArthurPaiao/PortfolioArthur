@@ -3,25 +3,45 @@ export type ExperienceItem = {
   company: string;
   period: string;
   bullets: { text: string; highlight?: string }[];
+  stack?: string[];
 };
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Estagiário — Intercâmbio e Fee",
+    role: "Estagiário de Engenharia de Software — Cancelamento",
     company: "Cielo",
-    period: "Nov/2025 — Atual",
+    period: "Set/2026 — Atual",
     bullets: [
       {
-        text: "Scripts em Python que reduziram o tempo de elaboração de materiais para a ABECS, eliminando retrabalho manual da equipe.",
+        text: "Apoio na migração da aplicação de Java 21 para Java 25, atualizando dependências e garantindo a compatibilidade do código.",
+        highlight: "Java 21 → 25",
+      },
+      {
+        text: "Refatoração e redução de dívida técnica, com remoção de classes e dependências obsoletas.",
+      },
+      {
+        text: "Escrita de testes automatizados e participação ativa nos code reviews do time.",
+      },
+    ],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "React", "TypeScript", "Material UI", "Docker"],
+  },
+  {
+    role: "Estagiário — Intercâmbio e Fee",
+    company: "Cielo",
+    period: "Nov/2025 — Set/2026",
+    bullets: [
+      {
+        text: "Desenvolvimento de scripts em Python que automatizaram a produção de materiais para a ABECS, eliminando retrabalho manual da equipe.",
         highlight: "-40% tempo",
       },
       {
-        text: "Script em SQL para identificar lacunas entre subadquirentes, mapeando inconsistências que resultaram em recuperação de valores.",
+        text: "Criação de consultas SQL para cruzar dados de subadquirentes e detectar inconsistências, resultando em recuperação de valores.",
       },
       {
-        text: "Apoio na migração de bases de dados para o Databricks e extração via AWS, integradas ao Power BI.",
+        text: "Apoio na migração de bases de dados para o Databricks e na extração via AWS (Athena), com integração ao Power BI.",
       },
     ],
+    stack: ["Python", "SQL", "Databricks", "AWS"],
   },
   {
     role: "Estagiário — Relacionamento com Bandeiras",
@@ -29,17 +49,18 @@ export const experience: ExperienceItem[] = [
     period: "Nov/2024 — Nov/2025",
     bullets: [
       {
-        text: "Bot em Power Automate integrado ao Outlook, eliminando trabalho manual na distribuição de boletins informativos.",
+        text: "Desenvolvimento de um bot em Power Automate integrado ao Outlook, automatizando a distribuição de boletins informativos.",
         highlight: "-10h/semana",
       },
       {
-        text: "Dashboards em Power BI para monitorar 3 KPIs da área, dando visibilidade em tempo real à liderança.",
-      },
-      {
-        text: "Otimização de 2 processos obsoletos com soluções low-code, melhorando a comunicação com stakeholders.",
+        text: "Reengenharia de 2 processos obsoletos com soluções low-code, melhorando a comunicação com stakeholders.",
         highlight: "-25% tempo",
       },
+      {
+        text: "Construção de dashboards em Power BI para monitorar 3 KPIs da área em tempo real.",
+      },
     ],
+    stack: ["Power Automate", "Low-code", "Power BI"],
   },
   {
     role: "Jovem Aprendiz — Talent Acquisition",
@@ -47,15 +68,12 @@ export const experience: ExperienceItem[] = [
     period: "Set/2023 — Out/2024",
     bullets: [
       {
-        text: "Apoio de ponta a ponta no programa de estágio, contribuindo para a contratação de estagiários no ciclo.",
-        highlight: "40 contratados",
-      },
-      {
         text: "Automatização de planilhas e processos manuais no Excel.",
         highlight: "-50% tempo",
       },
       {
-        text: "Representou a J&J na Feira de Estágios da USP, apresentando o programa a 200 candidatos.",
+        text: "Apoio de ponta a ponta no programa de estágio, contribuindo para a contratação de estagiários no ciclo.",
+        highlight: "40 contratados",
       },
     ],
   },

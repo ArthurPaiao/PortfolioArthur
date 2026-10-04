@@ -1,105 +1,162 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Mail } from "lucide-react";
+import { ArrowDown, ArrowRight, Download, Mail, MapPin } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 import { profile } from "@/data/profile";
 import AnimatedCounter from "./AnimatedCounter";
+import ParticleField from "./ui/ParticleField";
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] as const } },
+  hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] as const },
+  },
 };
+
+const socials = [
+  { href: profile.github, label: "GitHub", icon: GithubIcon, external: true },
+  { href: profile.linkedin, label: "LinkedIn", icon: LinkedinIcon, external: true },
+  { href: `mailto:${profile.email}`, label: "Email", icon: Mail, external: false },
+];
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="pt-32 pb-20 px-6 max-w-4xl mx-auto min-h-screen flex flex-col justify-center text-center"
-    >
-      <motion.div variants={container} initial="hidden" animate="show">
-        <motion.div
-          variants={item}
-          className="mx-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-sm text-slate-300 mb-8"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          Estagiário na Cielo — {profile.role}
-        </motion.div>
+    <section id="inicio" className="relative min-h-screen overflow-hidden">
+      {/* Fundo: grade sutil + brilhos ambientes */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.35] dark:opacity-[0.25]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+            maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%)",
+          }}
+        />
+        <div
+          className="absolute -top-32 -left-32 w-[28rem] h-[28rem] rounded-full blur-3xl"
+          style={{ background: "var(--glow)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[32rem] h-[32rem] rounded-full blur-3xl"
+          style={{ background: "var(--glow)" }}
+        />
+      </div>
 
-        <motion.h1
-          variants={item}
-          className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6"
-        >
-          Transformando <span className="text-emerald-400">dados</span> em resultados
-        </motion.h1>
+      {/* Partículas: atrás do texto no mobile, coluna própria no desktop */}
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[6vw] opacity-40 lg:opacity-100">
+        <ParticleField rows={15} range={0.55} />
+      </div>
 
-        <motion.p
-          variants={item}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10"
-        >
-          {profile.summary}
-        </motion.p>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 min-h-screen flex flex-col justify-center pt-28 pb-24">
+        <motion.div variants={container} initial="hidden" animate="show" className="max-w-2xl">
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/70 backdrop-blur border border-line text-xs sm:text-sm text-muted mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+            </span>
+            {profile.currentPosition}
+          </motion.div>
 
-        <motion.div
-          variants={item}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap mb-16"
-        >
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white text-slate-950 rounded-xl font-medium hover:bg-emerald-100 transition-colors"
-          >
-            <Download className="w-5 h-5" />
-            Baixar Currículo
-          </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-emerald-700 transition-colors group"
-          >
-            <GithubIcon className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors" />
-            <span className="font-medium">GitHub</span>
-          </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-blue-700 transition-colors group"
-          >
-            <LinkedinIcon className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
-            <span className="font-medium">LinkedIn</span>
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-red-800 transition-colors group"
-          >
-            <Mail className="w-5 h-5 text-slate-400 group-hover:text-red-400 transition-colors" />
-            <span className="font-medium">Email</span>
-          </a>
-        </motion.div>
+          <motion.p variants={item} className="font-mono text-sm text-accent mb-4">
+            Olá, eu sou {profile.name}
+          </motion.p>
 
-        <motion.div variants={item} className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-          {profile.stats.map((stat) => (
-            <div
-              key={stat.label}
-              title={"detail" in stat ? stat.detail : undefined}
-              className="p-4 rounded-xl border border-transparent hover:border-emerald-900 hover:bg-slate-900 transition-colors cursor-default"
+          <motion.h1
+            variants={item}
+            className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tighter leading-[0.95] text-fg mb-6"
+          >
+            Construindo software de{" "}
+            <span className="bg-gradient-to-br from-accent via-accent-strong to-teal-600 bg-clip-text text-transparent">
+              ponta a ponta.
+            </span>
+          </motion.h1>
+
+          <motion.p variants={item} className="text-base sm:text-lg text-muted leading-relaxed mb-8 max-w-xl">
+            {profile.summary}
+          </motion.p>
+
+          <motion.div variants={item} className="flex flex-col sm:flex-row sm:items-center gap-3 mb-10">
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-fg text-bg font-medium"
             >
-              <div className="text-3xl font-bold text-white mb-1">
-                <AnimatedCounter value={stat.value} />
-              </div>
-              <div className="text-slate-400 text-sm">{stat.label}</div>
+              <Download className="relative z-10 w-4 h-4" />
+              <span className="relative z-10">Baixar currículo</span>
+              <span
+                aria-hidden
+                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/25 dark:via-black/15 to-transparent"
+              />
+            </a>
+            <a
+              href="#contato"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-line-strong bg-surface/60 backdrop-blur text-fg font-medium hover:border-accent transition-colors"
+            >
+              Vamos conversar
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <div className="flex items-center gap-2 sm:ml-2">
+              {socials.map(({ href, label, icon: Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                  aria-label={label}
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-xl border border-line bg-surface/60 backdrop-blur text-muted hover:text-accent hover:border-accent transition-colors"
+                >
+                  <Icon className="w-[18px] h-[18px]" />
+                </a>
+              ))}
             </div>
-          ))}
+          </motion.div>
+
+          <motion.div
+            variants={item}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl border border-line bg-line overflow-hidden max-w-xl"
+          >
+            {profile.stats.map((stat) => (
+              <div
+                key={stat.label}
+                title={"detail" in stat ? stat.detail : undefined}
+                className="px-4 py-3.5 bg-surface cursor-default"
+              >
+                <div className="text-2xl font-semibold text-fg tabular-nums">
+                  <AnimatedCounter value={stat.value} />
+                </div>
+                <div className="text-xs text-subtle mt-0.5">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.p variants={item} className="mt-6 inline-flex items-center gap-1.5 text-sm text-subtle">
+            <MapPin className="w-4 h-4" />
+            {profile.location}
+          </motion.p>
         </motion.div>
-      </motion.div>
+      </div>
+
+      <a
+        href="#experiencia"
+        aria-label="Rolar para a próxima seção"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-subtle hover:text-accent transition-colors"
+      >
+        <span className="font-mono text-[11px] uppercase tracking-[0.3em]">role</span>
+        <ArrowDown className="w-4 h-4 animate-bounce" />
+      </a>
     </section>
   );
 }

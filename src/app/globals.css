@@ -1,35 +1,87 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: -apple-system, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+/* Variante dark controlada pelo atributo data-theme no <html> */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-  --color-emerald-50: #ecfdf5;
-  --color-emerald-100: #d1fae5;
-  --color-emerald-200: #a7f3d0;
-  --color-emerald-400: #34d399;
-  --color-emerald-500: #10b981;
-  --color-emerald-600: #059669;
-  --color-emerald-700: #047857;
-  --color-emerald-900: #064e3b;
+/* Tokens semanticos: cada tema redefine as variaveis, os componentes so usam os nomes */
+:root,
+[data-theme="light"] {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f4f4f3;
+  --line: #e7e5e4;
+  --line-strong: #d6d3d1;
+  --fg: #0c0a09;
+  --muted: #57534e;
+  --subtle: #78716c;
+  --accent: #059669;
+  --accent-strong: #047857;
+  --accent-soft: #d1fae5;
+  --accent-fg: #ffffff;
+  --glow: rgba(5, 150, 105, 0.12);
+  color-scheme: light;
+}
 
-  --color-slate-950: #0a0f1a;
-  --color-slate-900: #0f172a;
-  --color-slate-800: #1e293b;
-  --color-slate-700: #334155;
+[data-theme="dark"] {
+  --bg: #09090b;
+  --surface: #111113;
+  --surface-2: #18181b;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --subtle: #71717a;
+  --accent: #34d399;
+  --accent-strong: #10b981;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --accent-fg: #052e1f;
+  --glow: rgba(52, 211, 153, 0.14);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+
+  --animate-marquee: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
-  background-color: var(--color-slate-950);
-  color: #e2e8f0;
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
-  background-color: var(--color-emerald-900);
-  color: var(--color-emerald-100);
+  background-color: var(--accent-soft);
+  color: var(--fg);
 }
 
 /* Respeita usuarios que preferem menos movimento */
@@ -44,7 +96,7 @@ body {
 
 /* Foco visivel para navegacao por teclado */
 :focus-visible {
-  outline: 2px solid var(--color-emerald-500);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }

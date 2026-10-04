@@ -4,34 +4,66 @@ export type Project = {
   description: string;
   stack: string[];
   result?: string;
-  icon: "heart-pulse" | "leaf" | "bot";
+  status?: string;
+  icon: "heart-pulse" | "leaf" | "bot" | "layout" | "landmark" | "shopping-cart";
   githubUrl?: string;
+  /** Ocupa duas colunas no bento grid. A ordem do array define o encaixe das linhas. */
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
   {
+    slug: "comparador-supermercados",
+    title: "Comparador de Preços de Supermercados",
+    description:
+      "Plataforma que encontra o menor preço entre ofertas verificadas de supermercados em Mogi das Cruzes, por localização e raio de busca. Monorepo TypeScript com API em Fastify, contratos validados com Zod, coletores de dados com proteção contra SSRF, regras de negócio puras (dinheiro em centavos, GTIN, unidades, ranking) e PostgreSQL com migrações versionadas.",
+    stack: ["TypeScript", "Node.js", "Fastify", "PostgreSQL", "Zod", "Vitest", "Docker"],
+    result: "100+ testes automatizados (unidade e integração)",
+    status: "Em desenvolvimento",
+    icon: "shopping-cart",
+    featured: true,
+  },
+  {
+    slug: "agente-ia-contratos",
+    title: "Agente de IA para Contratos",
+    description:
+      "Agente integrado à API Gemini que monitora vencimentos de contratos e dispara alertas, com dashboard de acompanhamento e análise automática.",
+    stack: ["Python", "Gemini API", "Integração de APIs"],
+    result: "-100% risco de perda de prazos",
+    icon: "bot",
+  },
+  {
+    slug: "portfolio",
+    title: "Portfólio Pessoal",
+    description:
+      "Aplicação web com Next.js (App Router) e TypeScript, componentes reutilizáveis orientados a dados, tema claro/escuro, animações com Framer Motion e formulário de contato integrado a um serviço externo.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    icon: "layout",
+  },
+  {
+    slug: "srm-credit-engine",
+    title: "SRM Credit Engine — Desafio Técnico",
+    description:
+      "Sistema full stack de precificação e liquidação de recebíveis para um FIDC, em BRL e USD, com precisão decimal e liquidação idempotente. API REST em Spring Boot com PostgreSQL e Flyway, motor de cálculo com Strategy, controle de concorrência com locks transacionais, importação CSV, liquidação em lote e front-end em React + TypeScript + Material UI.",
+    stack: ["Java 21", "Spring Boot", "PostgreSQL", "React", "TypeScript", "Material UI", "Docker", "Testcontainers"],
+    result: "152 testes automatizados (120 back-end + 32 front-end)",
+    icon: "landmark",
+    featured: true,
+  },
+  {
     slug: "fila-triagem-hospitalar",
     title: "Fila de Triagem Hospitalar",
     description:
-      "Aplicação em Java para reduzir o tempo de espera em filas de triagem, pensada para atender hospitais e pacientes com mais agilidade.",
-    stack: ["Java", "POO"],
+      "Aplicação em Java para gerenciar filas de triagem e reduzir o tempo de espera, modelada com orientação a objetos e estruturas de dados.",
+    stack: ["Java", "POO", "Estruturas de Dados"],
     icon: "heart-pulse",
   },
   {
     slug: "greentech",
     title: "GreenTech",
     description:
-      "Site com a API do Google Maps para localizar pontos de descarte sustentável de eletrônicos, mapeando 8 locais na região de São Paulo.",
-    stack: ["Google Maps API", "JavaScript"],
+      "Aplicação web integrada à API do Google Maps para localizar pontos de descarte sustentável de eletrônicos, mapeando 8 locais na região de São Paulo.",
+    stack: ["JavaScript", "HTML/CSS", "Google Maps API"],
     icon: "leaf",
-  },
-  {
-    slug: "agente-ia-contratos",
-    title: "Agente de IA para Contratos",
-    description:
-      "Agente com a API Gemini para alertar vencimento de contratos, com dashboard de monitoramento e análise automática.",
-    stack: ["Gemini API", "Python"],
-    result: "-100% risco de perda de prazos",
-    icon: "bot",
   },
 ];

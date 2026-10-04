@@ -1,15 +1,43 @@
 export type SkillGroup = {
   title: string;
-  icon: "code" | "database" | "zap" | "layers" | "kanban";
+  icon: "code" | "monitor" | "server" | "database" | "git-branch";
   items: string[];
 };
 
 export const skillGroups: SkillGroup[] = [
-  { title: "Linguagens", icon: "code", items: ["Python", "Java", "SQL", "JavaScript"] },
-  { title: "Dados & BI", icon: "database", items: ["Power BI", "Databricks", "AWS"] },
-  { title: "Automação", icon: "zap", items: ["Power Automate", "RPA"] },
-  { title: "Frameworks & APIs", icon: "layers", items: ["Spring Boot", "React", "Docker"] },
-  { title: "Metodologias", icon: "kanban", items: ["Scrum", "Agile", "Six Sigma"] },
+  { title: "Linguagens", icon: "code", items: ["Java", "TypeScript", "JavaScript", "Python", "SQL"] },
+  {
+    title: "Front-end",
+    icon: "monitor",
+    items: ["React", "Next.js", "Vite", "Material UI", "Tailwind CSS", "Framer Motion", "HTML", "CSS"],
+  },
+  {
+    title: "Back-end",
+    icon: "server",
+    items: ["Spring Boot", "JPA/Hibernate", "Node.js", "Fastify", "Zod", "APIs REST", "JWT", "OAuth2"],
+  },
+  {
+    title: "Banco de Dados & Cloud",
+    icon: "database",
+    items: ["PostgreSQL", "SQL Server", "Flyway", "Docker", "AWS (Athena)", "Databricks"],
+  },
+  {
+    title: "Engenharia & Práticas",
+    icon: "git-branch",
+    items: [
+      "Git/GitHub",
+      "Code Review",
+      "Refatoração",
+      "Testes automatizados",
+      "JUnit",
+      "Testcontainers",
+      "Vitest",
+      "POO",
+      "Design Patterns",
+      "Arquitetura de Software",
+      "Scrum",
+    ],
+  },
 ];
 
 export type SkillHighlight = {
@@ -17,36 +45,39 @@ export type SkillHighlight = {
   description: string;
   result: string;
   tags: string[];
-  icon: "zap" | "bar-chart" | "database" | "code";
+  icon: "server" | "monitor" | "zap" | "database";
 };
 
 export const skillHighlights: SkillHighlight[] = [
   {
-    title: "Automação de Processos",
-    description: "Bots e scripts para eliminar trabalho manual repetitivo.",
-    result: "10h/semana economizadas com bot no Outlook",
-    tags: ["Power Automate", "RPA"],
+    title: "Back-end & APIs",
+    description:
+      "APIs REST com Spring Boot e JPA, autenticação via JWT/OAuth2 e aplicações containerizadas com Docker.",
+    result: "Arquitetura em camadas e orientação a objetos",
+    tags: ["Java", "Spring Boot", "Docker"],
+    icon: "server",
+  },
+  {
+    title: "Front-end Moderno",
+    description:
+      "Interfaces responsivas, acessíveis e animadas com React, Next.js, TypeScript e Tailwind CSS.",
+    result: "Este portfólio: Next.js 16 + TypeScript",
+    tags: ["React", "Next.js", "TypeScript"],
+    icon: "monitor",
+  },
+  {
+    title: "Automação & Scripts",
+    description: "Scripts e integrações que eliminam trabalho manual e conectam sistemas.",
+    result: "-40% no tempo de elaboração de materiais (Cielo)",
+    tags: ["Python", "SQL"],
     icon: "zap",
   },
   {
-    title: "Dashboards Analíticos",
-    description: "Dashboards em Power BI para monitoramento de KPIs e análises estratégicas.",
-    result: "3 KPIs monitorados em tempo real para a liderança",
-    tags: ["Power BI", "SQL"],
-    icon: "bar-chart",
-  },
-  {
-    title: "Migração de Dados",
-    description: "Migração de bases para Databricks e extração via AWS.",
-    result: "40% menos tempo na elaboração de materiais (ABECS)",
-    tags: ["Databricks", "Python"],
+    title: "Dados & Integrações",
+    description:
+      "Modelagem e consultas SQL, migração de bases para Databricks e extração via AWS, integrando back-end e análise.",
+    result: "Bases integradas entre Databricks, AWS e Power BI",
+    tags: ["SQL", "Databricks", "AWS"],
     icon: "database",
-  },
-  {
-    title: "Desenvolvimento Web",
-    description: "Interfaces e APIs modernas com foco em boas práticas de mercado.",
-    result: "3 projetos próprios em produção (Java, React, IA)",
-    tags: ["HTML/CSS", "Spring Boot"],
-    icon: "code",
   },
 ];
