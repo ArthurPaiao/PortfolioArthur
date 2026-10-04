@@ -7,6 +7,8 @@ import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import CursorGlow from "@/components/ui/CursorGlow";
 import { profile } from "@/data/profile";
 
 // Dados estruturados (schema.org) para buscadores entenderem quem é a pessoa do site
@@ -32,6 +34,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
+      <ScrollProgress />
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />

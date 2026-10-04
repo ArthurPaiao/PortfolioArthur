@@ -6,6 +6,7 @@ import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 import { profile } from "@/data/profile";
 import AnimatedCounter from "./AnimatedCounter";
 import ParticleField from "./ui/ParticleField";
+import Magnetic from "./ui/Magnetic";
 
 const container = {
   hidden: {},
@@ -89,37 +90,42 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={item} className="flex flex-col sm:flex-row sm:items-center gap-3 mb-10">
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-fg text-bg font-medium"
-            >
-              <Download className="relative z-10 w-4 h-4" />
-              <span className="relative z-10">Baixar currículo</span>
-              <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/25 dark:via-black/15 to-transparent"
-              />
-            </a>
-            <a
-              href="#contato"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-line-strong bg-surface/60 backdrop-blur text-fg font-medium hover:border-accent transition-colors"
-            >
-              Vamos conversar
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            <Magnetic className="w-full sm:w-auto">
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                className="group relative overflow-hidden w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-fg text-bg font-medium"
+              >
+                <Download className="relative z-10 w-4 h-4" />
+                <span className="relative z-10">Baixar currículo</span>
+                <span
+                  aria-hidden
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/25 dark:via-black/15 to-transparent"
+                />
+              </a>
+            </Magnetic>
+            <Magnetic className="w-full sm:w-auto">
+              <a
+                href="#contato"
+                className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-line-strong bg-surface/60 backdrop-blur text-fg font-medium hover:border-accent transition-colors"
+              >
+                Vamos conversar
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            </Magnetic>
             <div className="flex items-center gap-2 sm:ml-2">
               {socials.map(({ href, label, icon: Icon, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
-                  aria-label={label}
-                  className="w-11 h-11 inline-flex items-center justify-center rounded-xl border border-line bg-surface/60 backdrop-blur text-muted hover:text-accent hover:border-accent transition-colors"
-                >
-                  <Icon className="w-[18px] h-[18px]" />
-                </a>
+                <Magnetic key={label} strength={0.4}>
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noreferrer" : undefined}
+                    aria-label={label}
+                    className="w-11 h-11 inline-flex items-center justify-center rounded-xl border border-line bg-surface/60 backdrop-blur text-muted hover:text-accent hover:border-accent transition-colors"
+                  >
+                    <Icon className="w-[18px] h-[18px]" />
+                  </a>
+                </Magnetic>
               ))}
             </div>
           </motion.div>
