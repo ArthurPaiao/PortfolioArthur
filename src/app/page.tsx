@@ -7,10 +7,31 @@ import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { profile } from "@/data/profile";
+
+// Dados estruturados (schema.org) para buscadores entenderem quem é a pessoa do site
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  url: profile.siteUrl,
+  email: `mailto:${profile.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "São Paulo", addressRegion: "SP", addressCountry: "BR" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: profile.education.school },
+  worksFor: { "@type": "Organization", name: "Cielo" },
+  knowsLanguage: profile.languages.map((lang) => lang.name),
+  knowsAbout: ["Java", "Spring Boot", "React", "Next.js", "TypeScript", "PostgreSQL", "Docker", "SQL"],
+  sameAs: [profile.github, profile.linkedin],
+};
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       <Navbar />
       <main>
         <Hero />
