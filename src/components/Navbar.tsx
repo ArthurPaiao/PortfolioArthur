@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
+  { href: "#sobre", label: "Sobre" },
   { href: "#experiencia", label: "Experiência" },
   { href: "#projetos", label: "Projetos" },
   { href: "#competencias", label: "Competências" },

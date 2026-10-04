@@ -50,7 +50,7 @@ export default function Skills() {
     <section id="competencias" className="py-24 md:py-32 border-t border-line">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          index="03"
+          index="04"
           eyebrow="Competências"
           title="O que eu entrego"
           description="Do banco de dados à interface, com resultado medido sempre que possível."

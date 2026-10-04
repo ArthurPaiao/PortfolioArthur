@@ -54,7 +54,7 @@ export default function Contact() {
     <section id="contato" className="py-24 md:py-32 border-t border-line">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          index="05"
+          index="06"
           eyebrow="Contato"
           title="Vamos conversar?"
           description="Aberto a oportunidades como Desenvolvedor Full Stack, Back-end ou Front-end."

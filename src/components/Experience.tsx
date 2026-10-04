@@ -18,7 +18,7 @@ export default function Experience() {
     <section id="experiencia" className="py-24 md:py-32 border-t border-line">
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeader
-          index="01"
+          index="02"
           eyebrow="Experiência"
           title="Trajetória"
           description="Dois anos evoluindo de automação de processos para engenharia de software em produção."

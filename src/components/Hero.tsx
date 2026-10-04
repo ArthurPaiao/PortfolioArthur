@@ -150,7 +150,7 @@ export default function Hero() {
       </div>
 
       <a
-        href="#experiencia"
+        href="#sobre"
         aria-label="Rolar para a próxima seção"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-subtle hover:text-accent transition-colors"
       >

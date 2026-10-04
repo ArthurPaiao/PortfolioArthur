@@ -16,7 +16,7 @@ export default function Certifications() {
   return (
     <section id="certificacoes" className="py-24 md:py-32 border-t border-line">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader index="04" eyebrow="Certificações" title="Aprendizado contínuo" />
+        <SectionHeader index="05" eyebrow="Certificações" title="Aprendizado contínuo" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {certifications.map((cert, i) => {

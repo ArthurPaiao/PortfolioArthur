@@ -48,7 +48,7 @@ export default function Projects() {
     <section id="projetos" className="py-24 md:py-32 border-t border-line">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          index="02"
+          index="03"
           eyebrow="Projetos"
           title="O que já construí"
           description="De desafios técnicos a produtos em desenvolvimento: back-end robusto, testes de verdade e interfaces cuidadas."
