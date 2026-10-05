@@ -12,10 +12,10 @@ export const profile = {
   // Coloque a foto em /public (ex.: /public/profile.jpg) e troque null pelo caminho "/profile.jpg"
   photo: null as string | null,
   summary:
-    "Desenvolvedor Full Stack e graduando em Engenharia de Software, com 2 anos de experiência construindo soluções de ponta a ponta. Java e Spring Boot no back-end, React, Next.js e TypeScript no front-end, SQL, Docker e AWS na infraestrutura, com foco em código limpo, boa arquitetura e impacto mensurável.",
+    "Sou desenvolvedor full stack e estagiário na Cielo. Escrevo Java com Spring Boot no back-end e React com TypeScript no front, e me formo em Engenharia de Software em dezembro de 2026.",
   about: [
-    "Sou graduando em Engenharia de Software na Universidade São Judas Tadeu e estagiário de Engenharia de Software na Cielo, onde atuo na evolução de uma aplicação Java e Spring Boot: migração de versão, redução de dívida técnica, testes automatizados e code review.",
-    "Comecei automatizando processos e analisando dados, com Python, SQL, Power Automate e Power BI. Isso moldou meu jeito de programar: entender o problema do negócio antes de escrever código e medir o impacto depois.",
+    "Estou no último ano de Engenharia de Software na São Judas e, desde setembro, sou estagiário de engenharia na Cielo. O time cuida de uma aplicação Java com Spring Boot, e meu trabalho lá vai de migrar o projeto do Java 21 para o 25 a apagar classes que ninguém usava mais, escrever testes e revisar o código dos colegas.",
+    "Antes disso, passei dois anos em áreas de negócio da Cielo e um na Johnson & Johnson automatizando o que dava: planilhas no Excel, scripts em Python e SQL e um bot no Power Automate que tirou 10 horas por semana de trabalho manual do time. Foi ali que peguei o hábito de perguntar qual problema o código resolve antes de escrever a primeira linha, e de conferir depois se resolveu mesmo.",
   ],
   education: {
     course: "Bacharelado em Engenharia de Software",
