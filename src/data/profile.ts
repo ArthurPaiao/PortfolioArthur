@@ -7,7 +7,7 @@ export const profile = {
   email: "paiao2057@gmail.com",
   phone: "(11) 97074-7602",
   github: "https://github.com/ArthurPaiao",
-  linkedin: "https://www.linkedin.com/in/arthur-pai%C3%A3o-1302a5274/",
+  linkedin: "https://www.linkedin.com/in/arthurpaiao/",
   siteUrl: "https://arthurpaiao-dev.vercel.app",
   // Coloque a foto em /public (ex.: /public/profile.jpg) e troque null pelo caminho "/profile.jpg"
   photo: null as string | null,

@@ -34,5 +34,5 @@ O currículo em PDF está disponível [neste repositório](./cv.pdf) e também a
 
 ## Contato
 
-- LinkedIn: [in/arthur-gomes-paião](https://linkedin.com/in/arthur-gomes-paião-1302a5274)
+- LinkedIn: [in/arthurpaiao](https://www.linkedin.com/in/arthurpaiao/)
 - Portfólio: [arthurpaiao-dev.vercel.app](https://arthurpaiao-dev.vercel.app/)
