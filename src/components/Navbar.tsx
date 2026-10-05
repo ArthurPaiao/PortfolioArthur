@@ -7,6 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
+  { href: "#hobbies", label: "Hobbies" },
   { href: "#experiencia", label: "Experiência" },
   { href: "#projetos", label: "Projetos" },
   { href: "#competencias", label: "Competências" },
