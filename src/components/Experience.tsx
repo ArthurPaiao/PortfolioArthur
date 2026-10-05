@@ -15,73 +15,89 @@ export default function Experience() {
   const lineHeight = useSpring(scrollYProgress, { stiffness: 80, damping: 24 });
 
   return (
-    <section id="experiencia" className="py-24 md:py-32 border-t border-line">
+    <section id="experiencia" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeader
-          index="02"
+          index="03"
           eyebrow="Experiência"
+          flavor="log de missões"
           title="Trajetória"
           description="Dois anos evoluindo de automação de processos para engenharia de software em produção."
         />
 
         <div ref={containerRef} className="relative">
-          {/* Trilho de fundo + linha que "desenha" conforme o scroll */}
-          <div className="absolute left-[7px] md:left-[211px] top-2 bottom-2 w-px bg-line" />
+          {/* Trilho tracejado em pixel + barra que "enche" conforme o scroll */}
+          <div
+            className="absolute left-[6px] md:left-[210px] top-2 bottom-2 w-1"
+            style={{ backgroundImage: "repeating-linear-gradient(to bottom, var(--line-strong) 0 8px, transparent 8px 14px)" }}
+          />
           <motion.div
             style={{ scaleY: lineHeight }}
-            className="absolute left-[7px] md:left-[211px] top-2 bottom-2 w-px bg-accent origin-top"
+            className="absolute left-[6px] md:left-[210px] top-2 bottom-2 w-1 bg-accent origin-top"
           />
 
           <div className="space-y-14 md:space-y-16">
-            {experience.map((job, i) => (
-              <Reveal
-                key={job.company + job.period}
-                delay={i * 0.05}
-                className="relative grid md:grid-cols-[180px_1fr] gap-2 md:gap-16 pl-10 md:pl-0"
-              >
-                <span className="absolute left-0 md:left-[204px] top-1.5 w-[15px] h-[15px] rounded-full bg-bg border-2 border-accent flex items-center justify-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                </span>
+            {experience.map((job, i) => {
+              const active = job.period.includes("Atual");
+              return (
+                <Reveal
+                  key={job.company + job.period}
+                  delay={i * 0.05}
+                  className="relative grid md:grid-cols-[180px_1fr] gap-3 md:gap-16 pl-10 md:pl-0"
+                >
+                  {/* Checkpoint: quadrado pixelado; a missão atual pisca */}
+                  <span
+                    className={`absolute left-0 md:left-[204px] top-1 w-4 h-4 border-4 ${
+                      active ? "bg-gold border-gold animate-twinkle" : "bg-bg border-accent"
+                    }`}
+                  />
 
-                <div className="md:text-right md:pt-0.5">
-                  <div className="font-mono text-xs text-accent uppercase tracking-wider">{job.period}</div>
-                  <div className="text-fg font-medium mt-1">{job.company}</div>
-                </div>
+                  <div className="md:text-right md:pt-0.5">
+                    <div className="font-pixel text-sm text-accent uppercase tracking-wider">{job.period}</div>
+                    <div className="font-pixel text-fg text-lg mt-0.5">{job.company}</div>
+                  </div>
 
-                <div className="group rounded-2xl md:-mt-4 md:p-5 md:border md:border-transparent md:hover:border-line md:hover:bg-surface transition-colors">
-                  <h3 className="text-lg md:text-xl font-semibold text-fg tracking-tight">{job.role}</h3>
-
-                  <ul className="mt-3 space-y-2.5">
-                    {job.bullets.map((bullet, j) => (
-                      <li key={j} className="text-muted text-sm leading-relaxed flex gap-2.5">
-                        <span className="mt-2 w-1 h-1 rounded-full bg-subtle shrink-0" />
-                        <span>
-                          {bullet.text}
-                          {bullet.highlight && (
-                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-accent-soft text-accent text-xs font-medium whitespace-nowrap">
-                              {bullet.highlight}
-                            </span>
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {job.stack && (
-                    <div className="flex flex-wrap gap-1.5 mt-4">
-                      {job.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="font-mono text-[11px] px-2 py-1 rounded-md bg-surface-2 text-muted border border-line"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                  <div className="pixel-box pixel-card p-5 md:-mt-3">
+                    <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                      <h3 className="font-pixel text-lg md:text-xl text-fg">{job.role}</h3>
+                      <span
+                        className={`font-pixel text-[11px] uppercase tracking-wider px-2 py-0.5 ${
+                          active ? "bg-gold text-[#2a1a00]" : "bg-surface-2 text-subtle"
+                        }`}
+                      >
+                        {active ? "Missão ativa" : "Concluída"}
+                      </span>
                     </div>
-                  )}
-                </div>
-              </Reveal>
-            ))}
+
+                    <ul className="mt-3 space-y-2.5">
+                      {job.bullets.map((bullet, j) => (
+                        <li key={j} className="text-muted text-sm leading-relaxed flex gap-2.5">
+                          <span className="text-accent font-pixel shrink-0">▸</span>
+                          <span>
+                            {bullet.text}
+                            {bullet.highlight && (
+                              <span className="ml-2 inline-flex items-center px-2 py-0.5 bg-accent-soft text-accent font-pixel text-xs whitespace-nowrap">
+                                {bullet.highlight}
+                              </span>
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {job.stack && (
+                      <div className="flex flex-wrap gap-2.5 mt-4">
+                        {job.stack.map((tech) => (
+                          <span key={tech} className="pixel-chip">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const bar = "rounded-full bg-line";
+const bar = "bg-line";
 
 function ListMock() {
   return (
@@ -16,14 +16,14 @@ function ListMock() {
       {[0, 1, 2].map((i) => (
         <div
           key={i}
-          className={`flex items-center gap-2.5 rounded-lg p-1.5 border ${i === 0 ? "border-line-strong bg-surface" : "border-transparent"}`}
+          className={`flex items-center gap-2.5 p-1.5 border ${i === 0 ? "border-line-strong bg-surface" : "border-transparent"}`}
         >
-          <div className="w-6 h-6 rounded-md tint-soft shrink-0" />
+          <div className="w-6 h-6 tint-soft shrink-0" />
           <div className="flex-1 space-y-1.5">
             <div className={`${bar} h-1.5`} style={{ width: `${70 - i * 12}%` }} />
             <div className={`${bar} h-1.5 w-1/3 opacity-60`} />
           </div>
-          <div className={`h-3.5 rounded-full ${i === 0 ? "tint-strong w-12" : "tint-soft w-10"}`} />
+          <div className={`h-3.5 ${i === 0 ? "tint-strong w-12" : "tint-soft w-10"}`} />
         </div>
       ))}
     </div>
@@ -35,7 +35,7 @@ function DashboardMock() {
   return (
     <div className="flex gap-3 h-full">
       <div className="hidden sm:flex flex-col gap-2 w-12 shrink-0 pt-1">
-        <div className="h-2 rounded-full tint-strong" />
+        <div className="h-2 tint-strong" />
         {[0, 1, 2].map((i) => (
           <div key={i} className={`${bar} h-2`} />
         ))}
@@ -43,17 +43,17 @@ function DashboardMock() {
       <div className="flex-1 flex flex-col gap-3 min-w-0">
         <div className="grid grid-cols-3 gap-2">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="rounded-lg border border-line bg-surface p-2 space-y-1.5">
+            <div key={i} className="border border-line bg-surface p-2 space-y-1.5">
               <div className={`${bar} h-1.5 w-2/3 opacity-60`} />
-              <div className={`h-2.5 rounded-full w-1/2 ${i === 1 ? "tint-strong" : "bg-line-strong"}`} />
+              <div className={`h-2.5 w-1/2 ${i === 1 ? "tint-strong" : "bg-line-strong"}`} />
             </div>
           ))}
         </div>
-        <div className="flex-1 flex items-end gap-1.5 rounded-lg border border-line bg-surface p-2 min-h-16">
+        <div className="flex-1 flex items-end gap-1.5 border border-line bg-surface p-2 min-h-16">
           {heights.map((h, i) => (
             <div
               key={i}
-              className={`flex-1 rounded-sm ${i === 5 ? "tint-strong" : "tint-soft"}`}
+              className={`flex-1 ${i === 5 ? "tint-strong" : "tint-soft"}`}
               style={{ height: `${h}%` }}
             />
           ))}
@@ -66,16 +66,16 @@ function DashboardMock() {
 function ChatMock() {
   return (
     <div className="flex flex-col gap-2">
-      <div className="self-start max-w-[75%] rounded-xl rounded-bl-sm bg-surface border border-line p-2 space-y-1.5 w-40">
+      <div className="self-start max-w-[75%] bg-surface border border-line p-2 space-y-1.5 w-40">
         <div className={`${bar} h-1.5`} />
         <div className={`${bar} h-1.5 w-2/3`} />
       </div>
-      <div className="self-end rounded-xl rounded-br-sm tint-soft p-2 space-y-1.5 w-32">
-        <div className="h-1.5 rounded-full tint-strong w-full opacity-70" />
-        <div className="h-1.5 rounded-full tint-strong w-1/2 opacity-70" />
+      <div className="self-end tint-soft p-2 space-y-1.5 w-32">
+        <div className="h-1.5 tint-strong w-full opacity-70" />
+        <div className="h-1.5 tint-strong w-1/2 opacity-70" />
       </div>
-      <div className="self-start flex items-center gap-2 rounded-lg border border-line-strong bg-surface px-2 py-1.5">
-        <div className="w-2 h-2 rounded-full tint-strong tint-ring" />
+      <div className="self-start flex items-center gap-2 border border-line-strong bg-surface px-2 py-1.5">
+        <div className="w-2 h-2 tint-strong tint-ring" />
         <div className={`${bar} h-1.5 w-20`} />
       </div>
     </div>
@@ -94,16 +94,16 @@ function SiteMock() {
         </div>
       </div>
       <div className="space-y-1.5 pt-1">
-        <div className="h-3 rounded-full bg-line-strong w-4/5" />
-        <div className="h-3 rounded-full tint-strong w-1/2" />
+        <div className="h-3 bg-line-strong w-4/5" />
+        <div className="h-3 tint-strong w-1/2" />
       </div>
       <div className="flex gap-1.5">
-        <div className="h-4 w-14 rounded-md bg-fg/80" />
-        <div className="h-4 w-10 rounded-md border border-line-strong" />
+        <div className="h-4 w-14 bg-fg/80" />
+        <div className="h-4 w-10 border border-line-strong" />
       </div>
       <div className="grid grid-cols-3 gap-1.5 pt-1">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="h-8 rounded-md border border-line bg-surface" />
+          <div key={i} className="h-8 border border-line bg-surface" />
         ))}
       </div>
     </div>
@@ -120,7 +120,7 @@ function MapMock() {
   ];
   return (
     <div
-      className="relative h-full min-h-28 rounded-lg overflow-hidden border border-line"
+      className="relative h-full min-h-28 overflow-hidden border border-line"
       style={{
         backgroundImage:
           "linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px)",
@@ -133,11 +133,11 @@ function MapMock() {
       {pins.map(([x, y], i) => (
         <span
           key={i}
-          className={`absolute w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full tint-strong ${i === 2 ? "tint-ring" : ""}`}
+          className={`absolute w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2 tint-strong ${i === 2 ? "tint-ring" : ""}`}
           style={{ left: `${x}%`, top: `${y}%` }}
         />
       ))}
-      <div className="absolute left-2 bottom-2 rounded-md border border-line bg-surface p-1.5 space-y-1 w-20">
+      <div className="absolute left-2 bottom-2 border border-line bg-surface p-1.5 space-y-1 w-20">
         <div className={`${bar} h-1.5`} />
         <div className={`${bar} h-1.5 w-1/2 opacity-60`} />
       </div>
@@ -166,17 +166,17 @@ export default function ProjectPreview({ project, tint, className = "" }: Props)
 
   return (
     <div
-      className={`relative flex flex-col rounded-xl border border-line bg-bg overflow-hidden transition-transform duration-500 group-hover:-translate-y-1 ${className}`}
+      className={`pixel-box relative flex flex-col bg-bg overflow-hidden transition-transform duration-150 group-hover:-translate-y-1 ${className}`}
       style={{ "--tint": tint } as CSSProperties}
     >
       {/* Barra do "navegador" */}
       <div className="flex items-center gap-2 px-3 h-7 border-b border-line bg-surface-2/60 shrink-0">
         <div className="flex gap-1">
-          <span className="w-2 h-2 rounded-full bg-line-strong" />
-          <span className="w-2 h-2 rounded-full bg-line-strong" />
-          <span className="w-2 h-2 rounded-full bg-line-strong" />
+          <span className="w-2 h-2 bg-line-strong" />
+          <span className="w-2 h-2 bg-line-strong" />
+          <span className="w-2 h-2 bg-line-strong" />
         </div>
-        <div className="flex-1 min-w-0 mx-auto max-w-[70%] rounded-md bg-bg/80 border border-line px-2 py-0.5 font-mono text-[10px] text-subtle truncate text-center">
+        <div className="flex-1 min-w-0 mx-auto max-w-[70%] bg-bg/80 border border-line px-2 py-0.5 font-mono text-[10px] text-subtle truncate text-center">
           {frameLabel(project)}
         </div>
       </div>
@@ -200,7 +200,7 @@ export default function ProjectPreview({ project, tint, className = "" }: Props)
         {/* Brilho suave da cor do projeto */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-60 tint-soft"
+          className="pointer-events-none absolute -bottom-10 -right-10 w-40 h-40 blur-2xl opacity-60 tint-soft"
         />
       </div>
     </div>

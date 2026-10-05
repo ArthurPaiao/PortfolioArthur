@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Jersey_10 } from "next/font/google";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+// Fonte pixelada para títulos, botões e interface; o texto corrido continua em Geist
+const jersey = Jersey_10({ weight: "400", subsets: ["latin", "latin-ext"], variable: "--font-jersey" });
 
 const title = "Arthur Gomes Paião | Desenvolvedor Full Stack";
 const description =
@@ -50,8 +52,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf9" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: "(prefers-color-scheme: light)", color: "#eef3ff" },
+    { media: "(prefers-color-scheme: dark)", color: "#120c24" },
   ],
 };
 
@@ -67,7 +69,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${jersey.variable}`}
       suppressHydrationWarning
     >
       <head>

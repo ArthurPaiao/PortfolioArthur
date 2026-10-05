@@ -47,7 +47,7 @@ const tintMap: Record<Project["icon"], string> = {
   layout: "#3b82f6",
 };
 
-const items: BentoItem[] = projects.map((proj) => {
+const items: BentoItem[] = projects.map((proj, i) => {
   const Icon = iconMap[proj.icon];
   const links: BentoLink[] = [];
   if (proj.githubUrl) {
@@ -61,6 +61,7 @@ const items: BentoItem[] = projects.map((proj) => {
     description: proj.description,
     icon: <Icon className="w-5 h-5" />,
     iconClassName: colorMap[proj.icon],
+    meta: `Fase ${i + 1}`,
     status: proj.status,
     tags: proj.stack,
     result: proj.result,
@@ -73,11 +74,12 @@ const items: BentoItem[] = projects.map((proj) => {
 
 export default function Projects() {
   return (
-    <section id="projetos" className="py-24 md:py-32 border-t border-line">
+    <section id="projetos" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          index="03"
+          index="04"
           eyebrow="Projetos"
+          flavor="seleção de fases"
           title="O que já construí"
           description="De desafios técnicos a produtos em desenvolvimento: back-end robusto, testes de verdade e interfaces cuidadas."
         />
@@ -90,14 +92,17 @@ export default function Projects() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{ duration: 0.6, delay: 0.16, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="group relative flex flex-col justify-between gap-8 p-6 rounded-2xl border border-dashed border-line-strong hover:border-accent hover:bg-accent-soft transition-colors md:col-span-2 lg:col-span-1"
+            transition={{ duration: 0.5, delay: 0.16, ease: "easeOut" }}
+            className="pixel-box pixel-card group relative flex flex-col justify-between gap-8 p-6 bg-surface-2 md:col-span-2 lg:col-span-1"
           >
-            <GithubIcon className="w-8 h-8 text-muted group-hover:text-accent transition-colors" />
+            <div className="flex items-center justify-between">
+              <GithubIcon className="w-8 h-8 text-muted group-hover:text-accent transition-colors" />
+              <span className="font-pixel text-xs uppercase tracking-widest text-subtle">Fase bônus</span>
+            </div>
             <div>
-              <p className="text-lg font-semibold text-fg">Mais no GitHub</p>
+              <p className="font-pixel text-xl  text-fg">Mais no GitHub</p>
               <p className="text-sm text-muted mt-1">Código, experimentos e estudos.</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
+              <span className="mt-4 inline-flex items-center gap-1 font-pixel text-sm text-accent">
                 {profile.github.replace(/^https?:\/\//, "")}
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>

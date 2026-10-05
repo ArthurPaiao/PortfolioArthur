@@ -3,45 +3,83 @@
 /* Variante dark controlada pelo atributo data-theme no <html> */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Tokens semanticos: cada tema redefine as variaveis, os componentes so usam os nomes */
+/*
+ * Tokens semanticos: cada tema redefine as variaveis, os componentes so usam os nomes.
+ * Tema claro = dia (ceu azul, grama); tema escuro = noite (ceu roxo, neve, estrelas),
+ * inspirado na paleta de Celeste/Terraria.
+ */
 :root,
 [data-theme="light"] {
-  --bg: #fafaf9;
+  --bg: #eef3ff;
   --surface: #ffffff;
-  --surface-2: #f4f4f3;
-  --line: #e7e5e4;
-  --line-strong: #d6d3d1;
-  --fg: #0c0a09;
-  --muted: #57534e;
-  --subtle: #78716c;
-  --accent: #059669;
-  --accent-strong: #047857;
-  --accent-soft: #d1fae5;
+  --surface-2: #e2e9fb;
+  --line: #c7d0ee;
+  --line-strong: #8f9bd0;
+  --fg: #1c1537;
+  --muted: #47406b;
+  --subtle: #6a6490;
+  --accent: #d6336c;
+  --accent-strong: #b0234f;
+  --accent-soft: #fde2ec;
   --accent-fg: #ffffff;
-  --glow: rgba(5, 150, 105, 0.12);
+  --accent-2: #0b8fb3;
+  --gold: #b97a00;
+  --glow: rgba(214, 51, 108, 0.14);
+  --bevel-hi: rgba(255, 255, 255, 0.9);
+  --bevel-lo: rgba(28, 21, 55, 0.08);
+  --shadow-hard: rgba(28, 21, 55, 0.18);
+
+  /* Cena do hero */
+  --sky-top: #6fb8ff;
+  --sky-bottom: #d6efff;
+  --mtn-far: #b4caf0;
+  --mtn-mid: #86a6dd;
+  --mtn-near: #5d7cc4;
+  --ground: #8b5a3c;
+  --ground-top: #6cc04a;
+  --ground-edge: #4d9a35;
+  --snow: #ffffff;
+  --star: #ffffff;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #09090b;
-  --surface: #111113;
-  --surface-2: #18181b;
-  --line: #27272a;
-  --line-strong: #3f3f46;
-  --fg: #fafafa;
-  --muted: #a1a1aa;
-  --subtle: #71717a;
-  --accent: #34d399;
-  --accent-strong: #10b981;
-  --accent-soft: rgba(16, 185, 129, 0.12);
-  --accent-fg: #052e1f;
-  --glow: rgba(52, 211, 153, 0.14);
+  --bg: #120c24;
+  --surface: #1b1433;
+  --surface-2: #251c45;
+  --line: #3a2f63;
+  --line-strong: #5b4b94;
+  --fg: #f5eeff;
+  --muted: #bcb0de;
+  --subtle: #8e83b8;
+  --accent: #ff6fae;
+  --accent-strong: #ff4a97;
+  --accent-soft: rgba(255, 111, 174, 0.14);
+  --accent-fg: #2a0b1c;
+  --accent-2: #6ee7f9;
+  --gold: #ffd166;
+  --glow: rgba(255, 111, 174, 0.16);
+  --bevel-hi: rgba(255, 255, 255, 0.06);
+  --bevel-lo: rgba(0, 0, 0, 0.3);
+  --shadow-hard: rgba(0, 0, 0, 0.45);
+
+  --sky-top: #140c2e;
+  --sky-bottom: #3b2a6e;
+  --mtn-far: #3f3175;
+  --mtn-mid: #2d2359;
+  --mtn-near: #1e1842;
+  --ground: #2a2152;
+  --ground-top: #e3e8ff;
+  --ground-edge: #a9b3e6;
+  --snow: #e3e8ff;
+  --star: #fff6c9;
   color-scheme: dark;
 }
 
 @theme inline {
   --font-sans: var(--font-geist-sans), -apple-system, "Segoe UI", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-pixel: var(--font-jersey), var(--font-geist-mono), monospace;
 
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -55,8 +93,144 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
   --color-accent-fg: var(--accent-fg);
+  --color-accent-2: var(--accent-2);
+  --color-gold: var(--gold);
 
   --animate-marquee: marquee 40s linear infinite;
+  --animate-twinkle: twinkle 2.4s steps(2, jump-none) infinite;
+  --animate-blink-caret: blink-caret 1s steps(1) infinite;
+}
+
+/* ---------- Componentes em pixel (bordas em degrau via box-shadow) ---------- */
+/* Em @layer components para que utilitários do Tailwind (p-0, bg-*) possam sobrescrever */
+@layer components {
+
+/* Painel base: borda de 4px sem os cantos, com chanfro claro em cima e escuro embaixo */
+.pixel-box {
+  --pb: var(--line-strong);
+  background-color: var(--surface);
+  box-shadow:
+    0 -4px 0 0 var(--pb),
+    0 4px 0 0 var(--pb),
+    -4px 0 0 0 var(--pb),
+    4px 0 0 0 var(--pb),
+    inset 0 4px 0 0 var(--bevel-hi),
+    inset 0 -4px 0 0 var(--bevel-lo),
+    var(--pb-drop, 0 0 0 0 transparent);
+}
+
+/* Card interativo: sobe 2px e ganha sombra dura no hover */
+.pixel-card {
+  transition: translate 0.15s steps(2, jump-none), box-shadow 0.15s steps(2, jump-none);
+}
+.pixel-card:hover {
+  --pb: var(--accent);
+  --pb-drop: 8px 8px 0 0 var(--shadow-hard);
+  translate: -2px -2px;
+}
+
+/* Botao principal */
+.pixel-btn {
+  --pb: var(--accent-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  font-family: var(--font-pixel);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background-color: var(--accent);
+  color: var(--accent-fg);
+  box-shadow:
+    0 -4px 0 0 var(--pb),
+    0 4px 0 0 var(--pb),
+    -4px 0 0 0 var(--pb),
+    4px 0 0 0 var(--pb),
+    inset 0 4px 0 0 rgba(255, 255, 255, 0.28),
+    inset 0 -4px 0 0 rgba(0, 0, 0, 0.22);
+  transition: translate 0.1s steps(2, jump-none);
+}
+.pixel-btn:hover {
+  translate: 0 -2px;
+}
+.pixel-btn:active {
+  translate: 0 2px;
+}
+
+/* Botao secundario: mesmo formato, fundo de painel */
+.pixel-btn-ghost {
+  --pb: var(--line-strong);
+  background-color: var(--surface);
+  color: var(--fg);
+  box-shadow:
+    0 -4px 0 0 var(--pb),
+    0 4px 0 0 var(--pb),
+    -4px 0 0 0 var(--pb),
+    4px 0 0 0 var(--pb),
+    inset 0 4px 0 0 var(--bevel-hi),
+    inset 0 -4px 0 0 var(--bevel-lo);
+}
+.pixel-btn-ghost:hover {
+  --pb: var(--accent);
+  color: var(--accent);
+}
+
+/* Etiqueta pequena (tags de tecnologia) */
+.pixel-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  background-color: var(--surface-2);
+  box-shadow:
+    0 -2px 0 0 var(--line),
+    0 2px 0 0 var(--line),
+    -2px 0 0 0 var(--line),
+    2px 0 0 0 var(--line);
+}
+
+/* Campo de formulario */
+.pixel-input {
+  --pb: var(--line-strong);
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg);
+  color: var(--fg);
+  outline: none;
+  box-shadow:
+    0 -3px 0 0 var(--pb),
+    0 3px 0 0 var(--pb),
+    -3px 0 0 0 var(--pb),
+    3px 0 0 0 var(--pb),
+    inset 0 3px 0 0 var(--bevel-lo);
+}
+.pixel-input::placeholder {
+  color: var(--subtle);
+}
+.pixel-input:focus {
+  --pb: var(--accent);
+}
+
+/*
+ * Jersey 10 tem um peso só e letras pequenas para o corpo: sem negrito sintético
+ * (que borra os pixels) e com altura-x igualada à da Geist.
+ */
+.font-pixel,
+.pixel-btn {
+  font-synthesis: none;
+  font-size-adjust: 0.62;
+  letter-spacing: 0.02em;
+}
+
+/* Imagens e SVGs de pixel art nao devem ser suavizados */
+.pixelated {
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+
 }
 
 /* Tons derivados de --tint (cor do projeto) para as prévias ilustrativas */
@@ -79,6 +253,43 @@
   }
 }
 
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Respiração do avatar: sobe 1 pixel da arte e volta, sem interpolação */
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 var(--bob, -4px);
+  }
+}
+
+/* Nuvens atravessando o céu devagar */
+@keyframes drift {
+  from {
+    translate: -20vw 0;
+  }
+  to {
+    translate: 120vw 0;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
@@ -91,8 +302,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--accent-soft);
-  color: var(--fg);
+  background-color: var(--accent);
+  color: var(--accent-fg);
 }
 
 /* Respeita usuarios que preferem menos movimento */
@@ -107,7 +318,6 @@ body {
 
 /* Foco visivel para navegacao por teclado */
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline: 3px solid var(--accent-2);
+  outline-offset: 4px;
 }

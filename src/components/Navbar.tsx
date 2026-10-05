@@ -46,52 +46,49 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pt-4">
       <nav
-        className={`w-full max-w-4xl rounded-2xl border transition-all duration-300 ${
-          scrolled || open
-            ? "bg-surface/80 border-line backdrop-blur-xl shadow-lg shadow-black/5"
-            : "bg-transparent border-transparent"
+        className={`w-full max-w-5xl transition-[background-color,box-shadow] duration-200 ${
+          scrolled || open ? "pixel-box bg-surface/90 backdrop-blur" : "bg-transparent"
         }`}
       >
-        <div className="h-14 pl-5 pr-2 flex items-center justify-between">
-          <a href="#inicio" className="font-semibold tracking-tight text-fg">
+        <div className="h-14 pl-4 pr-2 flex items-center justify-between">
+          <a href="#inicio" className="font-pixel text-lg text-fg [text-shadow:2px_2px_0_var(--shadow-hard)]">
             arthur<span className="text-accent">.</span>paião
           </a>
 
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-1 text-sm">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`relative px-3.5 py-2 rounded-full transition-colors ${
-                  active === link.href ? "text-fg" : "text-muted hover:text-fg"
-                }`}
-              >
-                {active === link.href && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 rounded-full bg-surface-2 border border-line"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
-                )}
-                <span className="relative">{link.label}</span>
-              </a>
-            ))}
+          {/* Desktop: itens de menu com cursor ▶ na seção ativa */}
+          <div className="hidden lg:flex items-center gap-0.5 font-pixel text-sm">
+            {links.map((link) => {
+              const isActive = active === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`group relative flex items-center px-2.5 py-2 transition-colors ${
+                    isActive ? "text-accent" : "text-muted hover:text-fg"
+                  }`}
+                >
+                  <span
+                    aria-hidden
+                    className={`mr-1 text-[10px] transition-opacity ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-60"}`}
+                  >
+                    ▶
+                  </span>
+                  {link.label}
+                </a>
+              );
+            })}
             <ThemeToggle className="ml-1" />
-            <a
-              href="#contato"
-              className="ml-1 bg-fg text-bg px-4 py-2 rounded-full font-medium hover:opacity-85 transition-opacity"
-            >
+            <a href="#contato" className="pixel-btn ml-3 text-sm px-4 py-1.5">
               Contato
             </a>
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-1">
+          <div className="lg:hidden flex items-center gap-1">
             <ThemeToggle />
             <button
               onClick={() => setOpen((v) => !v)}
-              className="w-9 h-9 inline-flex items-center justify-center rounded-full text-fg hover:bg-surface-2"
+              className="w-10 h-10 inline-flex items-center justify-center text-fg hover:text-accent"
               aria-label={open ? "Fechar menu" : "Abrir menu"}
               aria-expanded={open}
             >
@@ -106,25 +103,24 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden"
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="lg:hidden overflow-hidden"
             >
-              <div className="flex flex-col px-3 pb-3 gap-1 border-t border-line pt-3">
+              <div className="flex flex-col px-3 pb-4 gap-1 border-t-4 border-dotted border-line pt-3 font-pixel">
                 {links.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="px-3 py-2.5 rounded-lg text-muted hover:text-fg hover:bg-surface-2 transition-colors"
+                    className={`px-3 py-2.5 transition-colors ${
+                      active === link.href ? "text-accent" : "text-muted hover:text-fg"
+                    }`}
                   >
+                    {active === link.href ? "▶ " : ""}
                     {link.label}
                   </a>
                 ))}
-                <a
-                  href="#contato"
-                  onClick={() => setOpen(false)}
-                  className="mt-1 text-center bg-fg text-bg px-4 py-2.5 rounded-lg font-medium"
-                >
+                <a href="#contato" onClick={() => setOpen(false)} className="pixel-btn mt-3 mx-1">
                   Contato
                 </a>
               </div>

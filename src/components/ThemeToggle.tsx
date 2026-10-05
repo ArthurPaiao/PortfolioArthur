@@ -1,7 +1,8 @@
 "use client";
 
 import { useLayoutEffect } from "react";
-import { Moon, Sun } from "lucide-react";
+import PixelArt from "./pixel/PixelArt";
+import { moon, sun } from "./pixel/icons";
 
 function currentTheme() {
   return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
@@ -36,12 +37,13 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={toggle}
-      aria-label="Alternar tema claro/escuro"
-      title="Alternar tema"
-      className={`relative w-9 h-9 inline-flex items-center justify-center rounded-full text-muted hover:text-fg hover:bg-surface-2 transition-colors ${className}`}
+      aria-label="Alternar entre dia e noite"
+      title="Alternar dia/noite"
+      className={`relative w-10 h-10 inline-flex items-center justify-center hover:bg-surface-2 transition-colors ${className}`}
     >
-      <Sun className="w-[18px] h-[18px] hidden dark:block" />
-      <Moon className="w-[18px] h-[18px] block dark:hidden" />
+      {/* Noite ativa mostra o sol (ir para o dia) e vice-versa */}
+      <PixelArt map={sun} scale={2} className="hidden dark:block" />
+      <PixelArt map={{ ...moon, palette: { M: "#5b4b94" } }} scale={2} className="block dark:hidden" />
     </button>
   );
 }
