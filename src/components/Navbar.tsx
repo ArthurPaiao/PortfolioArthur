@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -18,6 +18,24 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
+  const pendingHref = useRef<string | null>(null);
+
+  // No menu mobile, fechar o painel no mesmo instante do clique cancelava a rolagem
+  // suave do link. Agora o clique só fecha o menu e a rolagem acontece quando a
+  // animação de saída termina (onExitComplete).
+  function goTo(e: MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault();
+    pendingHref.current = href;
+    setOpen(false);
+  }
+
+  function scrollToPending() {
+    const href = pendingHref.current;
+    pendingHref.current = null;
+    if (!href) return;
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    history.pushState(null, "", href);
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -98,7 +116,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={scrollToPending}>
           {open && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
@@ -112,7 +130,7 @@ export default function Navbar() {
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => goTo(e, link.href)}
                     className={`px-3 py-2.5 transition-colors ${
                       active === link.href ? "text-accent" : "text-muted hover:text-fg"
                     }`}
@@ -121,7 +139,7 @@ export default function Navbar() {
                     {link.label}
                   </a>
                 ))}
-                <a href="#contato" onClick={() => setOpen(false)} className="pixel-btn mt-3 mx-1">
+                <a href="#contato" onClick={(e) => goTo(e, "#contato")} className="pixel-btn mt-3 mx-1">
                   Contato
                 </a>
               </div>
