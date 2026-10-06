@@ -12,8 +12,10 @@ import {
   LucideIcon,
   ShoppingCart,
 } from "lucide-react";
-import { projects, type Project } from "@/data/projects";
+import { getProjects, type Project } from "@/data/projects";
 import { profile } from "@/data/profile";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import { GithubIcon } from "./BrandIcons";
 import SectionHeader from "./SectionHeader";
 import { BentoGrid, type BentoItem, type BentoLink } from "./ui/BentoGrid";
@@ -47,42 +49,46 @@ const tintMap: Record<Project["icon"], string> = {
   layout: "#3b82f6",
 };
 
-const items: BentoItem[] = projects.map((proj, i) => {
-  const Icon = iconMap[proj.icon];
-  const links: BentoLink[] = [];
-  if (proj.githubUrl) {
-    links.push({ label: "Código", href: proj.githubUrl, icon: <GithubIcon className="w-3.5 h-3.5" /> });
-  }
-  if (proj.demoUrl) {
-    links.push({ label: "Ver online", href: proj.demoUrl, icon: <ExternalLink className="w-3.5 h-3.5" /> });
-  }
-  return {
-    title: proj.title,
-    description: proj.description,
-    icon: <Icon className="w-5 h-5" />,
-    iconClassName: colorMap[proj.icon],
-    meta: `Fase ${i + 1}`,
-    status: proj.status,
-    tags: proj.stack,
-    result: proj.result,
-    preview: <ProjectPreview project={proj} tint={tintMap[proj.icon]} className="h-full" />,
-    links,
-    colSpan: proj.featured ? 2 : 1,
-    hasPersistentHover: proj.slug === projects[0].slug,
-  };
-});
+export default function Projects({ locale }: { locale: Locale }) {
+  const projects = getProjects(locale);
+  const t = getDictionary(locale).projects;
 
-export default function Projects() {
+  const items: BentoItem[] = projects.map((proj, i) => {
+    const Icon = iconMap[proj.icon];
+    const links: BentoLink[] = [];
+    if (proj.githubUrl) {
+      links.push({ label: t.code, href: proj.githubUrl, icon: <GithubIcon className="w-3.5 h-3.5" /> });
+    }
+    if (proj.demoUrl) {
+      links.push({ label: t.live, href: proj.demoUrl, icon: <ExternalLink className="w-3.5 h-3.5" /> });
+    }
+    return {
+      title: proj.title,
+      description: proj.description,
+      icon: <Icon className="w-5 h-5" />,
+      iconClassName: colorMap[proj.icon],
+      meta: t.level(i + 1),
+      status: proj.status,
+      tags: proj.stack,
+      result: proj.result,
+      preview: (
+        <ProjectPreview
+          project={proj}
+          tint={tintMap[proj.icon]}
+          labels={{ illustrative: t.illustrative, screenshotAlt: t.screenshotAlt(proj.title) }}
+          className="h-full"
+        />
+      ),
+      links,
+      colSpan: proj.featured ? 2 : 1,
+      hasPersistentHover: proj.slug === projects[0].slug,
+    };
+  });
+
   return (
     <section id="projetos" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          index="04"
-          eyebrow="Projetos"
-          flavor="seleção de fases"
-          title="O que já construí"
-          description="De desafios técnicos a produtos em desenvolvimento: back-end robusto, testes de verdade e interfaces cuidadas."
-        />
+        <SectionHeader index="04" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} description={t.description} />
 
         <BentoGrid items={items}>
           <motion.a
@@ -97,11 +103,11 @@ export default function Projects() {
           >
             <div className="flex items-center justify-between">
               <GithubIcon className="w-8 h-8 text-muted group-hover:text-accent transition-colors" />
-              <span className="font-pixel text-xs uppercase tracking-widest text-subtle">Fase bônus</span>
+              <span className="font-pixel text-xs uppercase tracking-widest text-subtle">{t.bonus}</span>
             </div>
             <div>
-              <p className="font-pixel text-xl  text-fg">Mais no GitHub</p>
-              <p className="text-sm text-muted mt-1">Código, experimentos e estudos.</p>
+              <p className="font-pixel text-xl  text-fg">{t.moreOnGithub}</p>
+              <p className="text-sm text-muted mt-1">{t.moreOnGithubText}</p>
               <span className="mt-4 inline-flex items-center gap-1 font-pixel text-sm text-accent">
                 {profile.github.replace(/^https?:\/\//, "")}
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

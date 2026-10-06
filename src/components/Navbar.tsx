@@ -3,18 +3,33 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { htmlLang, localePath, type Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import ThemeToggle from "./ThemeToggle";
 
-const links = [
-  { href: "#sobre", label: "Sobre" },
-  { href: "#hobbies", label: "Hobbies" },
-  { href: "#experiencia", label: "Experiência" },
-  { href: "#projetos", label: "Projetos" },
-  { href: "#competencias", label: "Competências" },
-  { href: "#certificacoes", label: "Certificações" },
-];
+// Os ids das seções são os mesmos nos dois idiomas
+const sectionIds = ["sobre", "hobbies", "experiencia", "projetos", "competencias", "certificacoes"] as const;
 
-export default function Navbar() {
+// Link para a mesma página no outro idioma (troca de root layout = recarga completa)
+function LanguageSwitch({ locale, label }: { locale: Locale; label: string }) {
+  const other: Locale = locale === "pt" ? "en" : "pt";
+  return (
+    <a
+      href={localePath[other]}
+      hrefLang={htmlLang[other]}
+      lang={htmlLang[other]}
+      aria-label={label}
+      title={label}
+      className="w-10 h-10 inline-flex items-center justify-center font-pixel text-sm uppercase text-muted hover:text-accent hover:bg-surface-2 transition-colors"
+    >
+      {other}
+    </a>
+  );
+}
+
+export default function Navbar({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).nav;
+  const links = sectionIds.map((id) => ({ href: `#${id}`, label: t.links[id] }));
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
@@ -47,7 +62,7 @@ export default function Navbar() {
   // Destaca o link da seção visível no momento. Início e Contato também são observados
   // para que o destaque saia quando o usuário está neles.
   useEffect(() => {
-    const sections = ["#inicio", ...links.map((l) => l.href), "#contato"]
+    const sections = ["#inicio", ...sectionIds.map((id) => `#${id}`), "#contato"]
       .map((href) => document.querySelector(href))
       .filter((el): el is Element => el !== null);
     const observer = new IntersectionObserver(
@@ -96,19 +111,21 @@ export default function Navbar() {
                 </a>
               );
             })}
-            <ThemeToggle className="ml-1" />
+            <LanguageSwitch locale={locale} label={t.switchLanguage} />
+            <ThemeToggle locale={locale} />
             <a href="#contato" className="pixel-btn ml-3 text-sm px-4 py-1.5">
-              Contato
+              {t.contact}
             </a>
           </div>
 
           {/* Mobile */}
           <div className="lg:hidden flex items-center gap-1">
-            <ThemeToggle />
+            <LanguageSwitch locale={locale} label={t.switchLanguage} />
+            <ThemeToggle locale={locale} />
             <button
               onClick={() => setOpen((v) => !v)}
               className="w-10 h-10 inline-flex items-center justify-center text-fg hover:text-accent"
-              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-label={open ? t.closeMenu : t.openMenu}
               aria-expanded={open}
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -140,7 +157,7 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a href="#contato" onClick={(e) => goTo(e, "#contato")} className="pixel-btn mt-3 mx-1">
-                  Contato
+                  {t.contact}
                 </a>
               </div>
             </motion.div>

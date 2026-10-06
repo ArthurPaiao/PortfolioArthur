@@ -8,12 +8,14 @@ import { avatarBlink, avatarIdle, AVATAR_WIDTH } from "./avatar";
 type Props = {
   /** Tamanho em px de cada pixel do sprite. */
   scale?: number;
+  /** Rótulo acessível do botão (traduzido pelo chamador). */
+  label: string;
   onJump?: () => void;
   className?: string;
 };
 
 // Avatar do Arthur: respira, pisca, vira para o lado do cursor e pula no clique.
-export default function PixelAvatar({ scale = 10, onJump, className = "" }: Props) {
+export default function PixelAvatar({ scale = 10, label, onJump, className = "" }: Props) {
   const ref = useRef<HTMLButtonElement>(null);
   const [blinking, setBlinking] = useState(false);
   const [facingLeft, setFacingLeft] = useState(false);
@@ -71,7 +73,7 @@ export default function PixelAvatar({ scale = 10, onJump, className = "" }: Prop
       ref={ref}
       type="button"
       onClick={handleClick}
-      aria-label="Avatar em pixel art do Arthur. Clique para ele pular."
+      aria-label={label}
       className={`group relative flex flex-col items-center cursor-pointer select-none ${className}`}
     >
       <motion.div animate={jump} style={{ originY: 1 }}>

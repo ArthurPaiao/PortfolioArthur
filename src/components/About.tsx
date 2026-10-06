@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { Briefcase, GraduationCap, Languages, MapPin } from "lucide-react";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary, type Dictionary } from "@/i18n/ui";
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 import PixelArt from "./pixel/PixelArt";
 import { avatarIdle } from "./pixel/avatar";
 
-function Portrait() {
+function Portrait({ profile, t }: { profile: ReturnType<typeof getProfile>; t: Dictionary["about"] }) {
   return (
     <div className="pixel-box p-3">
       <div
@@ -16,7 +18,7 @@ function Portrait() {
         {profile.photo ? (
           <Image
             src={profile.photo}
-            alt={`Foto de ${profile.name}`}
+            alt={t.photoAlt(profile.name)}
             fill
             sizes="(min-width: 1024px) 320px, 100vw"
             className="object-cover"
@@ -30,7 +32,7 @@ function Portrait() {
             <PixelArt
               map={avatarIdle}
               scale={9}
-              title={`Avatar em pixel art de ${profile.name}`}
+              title={t.avatarTitle(profile.name)}
               className="relative mb-[14%] w-auto h-[78%]"
             />
           </>
@@ -44,17 +46,19 @@ function Portrait() {
             {profile.location}
           </div>
         </div>
-        <span className="font-pixel text-[11px] uppercase px-2 py-1 bg-accent-soft text-accent shrink-0">Disponível</span>
+        <span className="font-pixel text-[11px] uppercase px-2 py-1 bg-accent-soft text-accent shrink-0">{t.available}</span>
       </div>
     </div>
   );
 }
 
-export default function About() {
+export default function About({ locale }: { locale: Locale }) {
+  const profile = getProfile(locale);
+  const t = getDictionary(locale).about;
   const facts = [
     {
       icon: GraduationCap,
-      label: "Formação",
+      label: t.education,
       content: (
         <>
           <p className="text-fg font-medium">{profile.education.course}</p>
@@ -65,7 +69,7 @@ export default function About() {
     },
     {
       icon: Languages,
-      label: "Idiomas",
+      label: t.languages,
       content: (
         <ul className="space-y-1">
           {profile.languages.map((lang) => (
@@ -79,7 +83,7 @@ export default function About() {
     },
     {
       icon: Briefcase,
-      label: "Busco vagas de",
+      label: t.lookingFor,
       content: (
         <div className="flex flex-wrap gap-2">
           {profile.lookingFor.map((area) => (
@@ -95,17 +99,17 @@ export default function About() {
   return (
     <section id="sobre" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader index="01" eyebrow="Sobre" flavor="ficha do personagem" title="Quem está por trás do código" />
+        <SectionHeader index="01" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} />
 
         <div className="grid lg:grid-cols-[300px_1fr] gap-10 lg:gap-14 items-start">
           <Reveal className="max-w-[260px] sm:max-w-[300px] w-full mx-auto lg:mx-0">
-            <Portrait />
+            <Portrait profile={profile} t={t} />
           </Reveal>
 
           <div>
             <Reveal delay={0.05}>
               <div className="font-pixel text-sm text-accent-2 mb-4">
-                Classe: <span className="text-fg">{profile.role}</span>
+                {t.class} <span className="text-fg">{profile.role}</span>
               </div>
               <div className="space-y-5">
                 {profile.about.map((paragraph, i) => (

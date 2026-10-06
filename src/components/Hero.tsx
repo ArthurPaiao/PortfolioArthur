@@ -4,8 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
 import { avatarLines } from "@/data/personal";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import AnimatedCounter from "./AnimatedCounter";
 import PixelScene, { GROUND_HEIGHT } from "./pixel/PixelScene";
 import PixelAvatar from "./pixel/PixelAvatar";
@@ -22,14 +24,17 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" as const } },
 };
 
-const socials = [
-  { href: profile.github, label: "GitHub", icon: GithubIcon, external: true },
-  { href: profile.linkedin, label: "LinkedIn", icon: LinkedinIcon, external: true },
-  { href: `mailto:${profile.email}`, label: "Email", icon: Mail, external: false },
-];
-
-export default function Hero() {
+export default function Hero({ locale }: { locale: Locale }) {
   const [line, setLine] = useState(0);
+  const profile = getProfile(locale);
+  const t = getDictionary(locale).hero;
+  const lines = avatarLines[locale];
+
+  const socials = [
+    { href: profile.github, label: "GitHub", icon: GithubIcon, external: true },
+    { href: profile.linkedin, label: "LinkedIn", icon: LinkedinIcon, external: true },
+    { href: `mailto:${profile.email}`, label: "Email", icon: Mail, external: false },
+  ];
 
   return (
     <section id="inicio" className="relative min-h-screen overflow-hidden flex flex-col">
@@ -56,7 +61,7 @@ export default function Hero() {
             variants={item}
             className="font-pixel text-5xl sm:text-6xl lg:text-7xl leading-[0.9] text-fg mb-5 [text-shadow:4px_4px_0_var(--shadow-hard)]"
           >
-            Construindo software de <span className="text-accent">ponta a ponta.</span>
+            {t.headline} <span className="text-accent">{t.headlineAccent}</span>
           </motion.h1>
 
           <motion.div variants={item} className="pixel-box p-5 mb-7 max-w-xl">
@@ -69,10 +74,10 @@ export default function Hero() {
 
           <motion.div variants={item} className="flex flex-col sm:flex-row sm:items-center gap-4 mb-7">
             <a href="/cv.pdf" target="_blank" className="pixel-btn">
-              ▶ Baixar currículo
+              {t.downloadCv}
             </a>
             <a href="#contato" className="pixel-btn pixel-btn-ghost">
-              Vamos conversar
+              {t.talk}
             </a>
             <div className="flex items-center gap-4 sm:ml-2">
               {socials.map(({ href, label, icon: Icon, external }) => (
@@ -94,7 +99,7 @@ export default function Hero() {
             {profile.stats.map((stat) => (
               <div
                 key={stat.label}
-                title={"detail" in stat ? stat.detail : undefined}
+                title={stat.detail}
                 className="pixel-box px-3 py-2.5 cursor-default"
               >
                 <div className="font-pixel text-2xl text-gold tabular-nums">
@@ -110,14 +115,15 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-5 lg:pb-0">
           <SystemDialog
             key={line}
-            title="Sistema"
-            text={avatarLines[line]}
-            hint="▼ clique no avatar"
+            title={t.dialogTitle}
+            text={lines[line]}
+            hint={t.dialogHint}
             className="w-full max-w-sm"
           />
           <PixelAvatar
             scale={9}
-            onJump={() => setLine((l) => (l + 1) % avatarLines.length)}
+            label={t.avatarLabel}
+            onJump={() => setLine((l) => (l + 1) % lines.length)}
             className="origin-bottom scale-[0.8] sm:scale-100"
           />
         </div>

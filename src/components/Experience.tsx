@@ -2,11 +2,15 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { experience } from "@/data/experience";
+import { getExperience } from "@/data/experience";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 
-export default function Experience() {
+export default function Experience({ locale }: { locale: Locale }) {
+  const experience = getExperience(locale);
+  const t = getDictionary(locale).experience;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -17,13 +21,7 @@ export default function Experience() {
   return (
     <section id="experiencia" className="py-24 md:py-32">
       <div className="max-w-5xl mx-auto px-6">
-        <SectionHeader
-          index="03"
-          eyebrow="Experiência"
-          flavor="log de missões"
-          title="Trajetória"
-          description="Dois anos evoluindo de automação de processos para engenharia de software em produção."
-        />
+        <SectionHeader index="03" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} description={t.description} />
 
         <div ref={containerRef} className="relative">
           {/* Trilho tracejado em pixel + barra que "enche" conforme o scroll */}
@@ -38,7 +36,7 @@ export default function Experience() {
 
           <div className="space-y-14 md:space-y-16">
             {experience.map((job, i) => {
-              const active = job.period.includes("Atual");
+              const active = job.current === true;
               return (
                 <Reveal
                   key={job.company + job.period}
@@ -65,7 +63,7 @@ export default function Experience() {
                           active ? "bg-gold text-[#2a1a00]" : "bg-surface-2 text-subtle"
                         }`}
                       >
-                        {active ? "Missão ativa" : "Concluída"}
+                        {active ? t.active : t.done}
                       </span>
                     </div>
 

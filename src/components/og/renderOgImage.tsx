@@ -1,10 +1,16 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
 import { avatarIdle } from "@/components/pixel/avatar";
+import type { Locale } from "@/i18n/locales";
 
-export const alt = `${profile.name} — ${profile.role}`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+// Imagem de compartilhamento (Open Graph) usada pelas rotas opengraph-image de cada idioma
+
+export const ogSize = { width: 1200, height: 630 };
+
+export function ogAlt(locale: Locale) {
+  const profile = getProfile(locale);
+  return `${profile.name} — ${profile.role}`;
+}
 
 const stack = ["Java", "Spring Boot", "React", "Next.js", "TypeScript"];
 const PX = 13; // tamanho de cada pixel do avatar na imagem
@@ -27,7 +33,8 @@ const avatarPixels = avatarIdle.rows.flatMap((row, y) =>
   })
 );
 
-export default function OpengraphImage() {
+export function renderOgImage(locale: Locale) {
+  const profile = getProfile(locale);
   const avatarW = 16 * PX;
   const avatarH = avatarIdle.rows.length * PX;
 
@@ -125,6 +132,6 @@ export default function OpengraphImage() {
         </div>
       </div>
     ),
-    size
+    ogSize
   );
 }

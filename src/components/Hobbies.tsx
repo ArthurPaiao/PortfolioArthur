@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
-import { animes, games, nextQuest, type Hobby, type HobbyIcon } from "@/data/personal";
+import { getPersonal, type Hobby, type HobbyIcon } from "@/data/personal";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 import PixelArt, { type PixelMap } from "./pixel/PixelArt";
@@ -34,21 +36,18 @@ function HobbyItem({ hobby }: { hobby: Hobby }) {
   );
 }
 
-export default function Hobbies() {
+export default function Hobbies({ locale }: { locale: Locale }) {
+  const { games, animes, nextQuest } = getPersonal(locale);
+  const t = getDictionary(locale).hobbies;
+
   return (
     <section id="hobbies" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          index="02"
-          eyebrow="Fora do código"
-          flavor="side quests"
-          title="Quando não estou programando"
-          description="Jogos e animes são parte de quem eu sou e de onde vem boa parte da minha vontade de criar."
-        />
+        <SectionHeader index="02" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} description={t.description} />
 
         <div className="grid lg:grid-cols-[1fr_1.35fr] gap-8">
           <Reveal>
-            <Panel icon={gamepad} title="Jogando">
+            <Panel icon={gamepad} title={t.playing}>
               <ul className="space-y-6">
                 {games.map((g) => (
                   <HobbyItem key={g.name} hobby={g} />
@@ -58,7 +57,7 @@ export default function Hobbies() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <Panel icon={scroll} title="Assistindo">
+            <Panel icon={scroll} title={t.watching}>
               <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-6">
                 {animes.map((a) => (
                   <HobbyItem key={a.name} hobby={a} />
@@ -77,7 +76,7 @@ export default function Hobbies() {
                 <PixelArt map={chest} scale={4} />
               </div>
               <div>
-                <div className="font-pixel text-xs uppercase tracking-widest text-gold mb-1">Próxima fase</div>
+                <div className="font-pixel text-xs uppercase tracking-widest text-gold mb-1">{t.nextLevel}</div>
                 <h3 className="font-pixel text-2xl text-fg">{nextQuest.title}</h3>
                 <p className="text-sm text-muted leading-relaxed mt-1">{nextQuest.description}</p>
               </div>

@@ -9,6 +9,8 @@ Portfólio pessoal desenvolvido para apresentar minha trajetória, projetos e ex
 
 Site pessoal migrado de HTML estático para uma stack moderna, com dados estruturados em TypeScript, animações de scroll e suporte a modo claro/escuro.
 
+Disponível em português (`/`) e inglês (`/en`). Os textos traduzíveis ficam em `src/data` (campos `{ pt, en }`) e `src/i18n/ui.ts`.
+
 ## Tecnologias
 
 - [Next.js](https://nextjs.org)

@@ -5,6 +5,8 @@ import type { Project } from "@/data/projects";
 type Props = {
   project: Pick<Project, "title" | "image" | "preview" | "demoUrl" | "githubUrl" | "slug">;
   tint: string;
+  /** Textos traduzidos pelo chamador. */
+  labels: { illustrative: string; screenshotAlt: string };
   className?: string;
 };
 
@@ -155,13 +157,13 @@ const mocks: Record<Project["preview"], { Component: () => React.JSX.Element; fi
 };
 
 // Endereço real só aparece sobre um screenshot real; o mockup é sinalizado como ilustração.
-function frameLabel(project: Props["project"]) {
+function frameLabel(project: Props["project"], illustrative: string) {
   const url = project.demoUrl ?? project.githubUrl;
   if (project.image && url) return url.replace(/^https?:\/\/(www\.)?/, "");
-  return "prévia ilustrativa";
+  return illustrative;
 }
 
-export default function ProjectPreview({ project, tint, className = "" }: Props) {
+export default function ProjectPreview({ project, tint, labels, className = "" }: Props) {
   const mock = mocks[project.preview];
 
   return (
@@ -177,7 +179,7 @@ export default function ProjectPreview({ project, tint, className = "" }: Props)
           <span className="w-2 h-2 bg-line-strong" />
         </div>
         <div className="flex-1 min-w-0 mx-auto max-w-[70%] bg-bg/80 border border-line px-2 py-0.5 font-mono text-[10px] text-subtle truncate text-center">
-          {frameLabel(project)}
+          {frameLabel(project, labels.illustrative)}
         </div>
       </div>
 
@@ -185,7 +187,7 @@ export default function ProjectPreview({ project, tint, className = "" }: Props)
         {project.image ? (
           <Image
             src={project.image}
-            alt={`Captura de tela do projeto ${project.title}`}
+            alt={labels.screenshotAlt}
             fill
             sizes="(min-width: 1024px) 480px, 100vw"
             className="object-cover object-top"

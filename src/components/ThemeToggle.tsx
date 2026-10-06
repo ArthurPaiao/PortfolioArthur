@@ -1,6 +1,8 @@
 "use client";
 
 import { useLayoutEffect } from "react";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import PixelArt from "./pixel/PixelArt";
 import { moon, sun } from "./pixel/icons";
 
@@ -8,7 +10,9 @@ function currentTheme() {
   return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 }
 
-export default function ThemeToggle({ className = "" }: { className?: string }) {
+export default function ThemeToggle({ locale, className = "" }: { locale: Locale; className?: string }) {
+  const t = getDictionary(locale).theme;
+
   // No dev, o Strict Mode remonta e o React limpa o atributo que o script inline aplicou.
   // Em produção isso é um no-op.
   useLayoutEffect(() => {
@@ -37,8 +41,8 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={toggle}
-      aria-label="Alternar entre dia e noite"
-      title="Alternar dia/noite"
+      aria-label={t.label}
+      title={t.title}
       className={`relative w-10 h-10 inline-flex items-center justify-center hover:bg-surface-2 transition-colors ${className}`}
     >
       {/* Noite ativa mostra o sol (ir para o dia) e vice-versa */}

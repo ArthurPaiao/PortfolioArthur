@@ -1,5 +1,7 @@
 import { Code, Database, GitBranch, Monitor, Server, TrendingUp, Zap, LucideIcon } from "lucide-react";
-import { skillGroups, skillHighlights, type SkillGroup, type SkillHighlight } from "@/data/skills";
+import { getSkillGroups, getSkillHighlights, type SkillGroup, type SkillHighlight } from "@/data/skills";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 
@@ -17,10 +19,6 @@ const groupIcons: Record<SkillGroup["icon"], LucideIcon> = {
   database: Database,
   "git-branch": GitBranch,
 };
-
-const allTech = skillGroups.flatMap((g) => g.items);
-const half = Math.ceil(allTech.length / 2);
-const marqueeRows = [allTech.slice(0, half), allTech.slice(half)];
 
 function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
   return (
@@ -45,17 +43,19 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
   );
 }
 
-export default function Skills() {
+export default function Skills({ locale }: { locale: Locale }) {
+  const skillGroups = getSkillGroups(locale);
+  const skillHighlights = getSkillHighlights(locale);
+  const t = getDictionary(locale).skills;
+
+  const allTech = skillGroups.flatMap((g) => g.items);
+  const half = Math.ceil(allTech.length / 2);
+  const marqueeRows = [allTech.slice(0, half), allTech.slice(half)];
+
   return (
     <section id="competencias" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          index="05"
-          eyebrow="Competências"
-          flavor="inventário"
-          title="O que eu entrego"
-          description="Do banco de dados à interface, com resultado medido sempre que possível."
-        />
+        <SectionHeader index="05" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} description={t.description} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {skillHighlights.map((skill, i) => {
@@ -87,8 +87,8 @@ export default function Skills() {
         {/* Inventário: cada categoria é uma "barra" com seus itens em slots */}
         <div id="stack" className="mt-16 pixel-box p-5 md:p-7 space-y-7">
           <div className="flex items-center justify-between font-pixel text-xs uppercase tracking-widest text-subtle">
-            <span>Inventário</span>
-            <span>{allTech.length} itens</span>
+            <span>{t.inventory}</span>
+            <span>{t.items(allTech.length)}</span>
           </div>
           {skillGroups.map((group, i) => {
             const Icon = groupIcons[group.icon];

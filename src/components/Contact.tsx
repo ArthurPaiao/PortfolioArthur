@@ -2,7 +2,9 @@
 
 import { useState, FormEvent } from "react";
 import { ArrowUpRight, Check, Loader2, Mail, MapPin, Send } from "lucide-react";
-import { profile } from "@/data/profile";
+import { getProfile, profile } from "@/data/profile";
+import type { Locale } from "@/i18n/locales";
+import { getDictionary } from "@/i18n/ui";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
@@ -23,8 +25,10 @@ const channels = [
 
 const inputClass = "pixel-input";
 
-export default function Contact() {
+export default function Contact({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<Status>("idle");
+  const { location } = getProfile(locale);
+  const t = getDictionary(locale).contact;
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,13 +56,7 @@ export default function Contact() {
   return (
     <section id="contato" className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          index="07"
-          eyebrow="Contato"
-          flavor="ponto de save"
-          title="Vamos conversar?"
-          description="Aberto a oportunidades como Desenvolvedor Full Stack, Back-end ou Front-end."
-        />
+        <SectionHeader index="07" eyebrow={t.eyebrow} flavor={t.flavor} title={t.title} description={t.description} />
 
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-8">
           <Reveal className="flex flex-col gap-6">
@@ -82,7 +80,7 @@ export default function Contact() {
             ))}
             <div className="flex items-center gap-2 px-1 py-2 font-pixel text-sm text-subtle">
               <MapPin className="w-4 h-4" />
-              {profile.location}
+              {location}
             </div>
           </Reveal>
 
@@ -99,18 +97,18 @@ export default function Contact() {
               />
               <div className="flex items-center gap-3 pb-1">
                 <span className="w-3 h-3 bg-gold animate-twinkle" />
-                <span className="font-pixel text-sm uppercase tracking-widest text-gold">Salvar progresso</span>
+                <span className="font-pixel text-sm uppercase tracking-widest text-gold">{t.save}</span>
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block font-pixel text-sm text-fg mb-2">
-                    Nome
+                    {t.name}
                   </label>
-                  <input id="name" name="name" type="text" required className={inputClass} placeholder="Seu nome" />
+                  <input id="name" name="name" type="text" required className={inputClass} placeholder={t.namePlaceholder} />
                 </div>
                 <div>
                   <label htmlFor="email" className="block font-pixel text-sm text-fg mb-2">
-                    Email
+                    {t.email}
                   </label>
                   <input
                     id="email"
@@ -118,13 +116,13 @@ export default function Contact() {
                     type="email"
                     required
                     className={inputClass}
-                    placeholder="seu@email.com"
+                    placeholder={t.emailPlaceholder}
                   />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block font-pixel text-sm text-fg mb-2">
-                  Mensagem
+                  {t.message}
                 </label>
                 <textarea
                   id="message"
@@ -132,7 +130,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className={`${inputClass} resize-none`}
-                  placeholder="Como posso ajudar?"
+                  placeholder={t.messagePlaceholder}
                 />
               </div>
 
@@ -144,12 +142,12 @@ export default function Contact() {
                 {status === "loading" && <Loader2 className="w-4 h-4 animate-spin" />}
                 {status === "success" && <Check className="w-4 h-4" />}
                 {(status === "idle" || status === "error") && <Send className="w-4 h-4" />}
-                {status === "success" ? "Progresso salvo! Mensagem enviada." : "Enviar mensagem"}
+                {status === "success" ? t.sent : t.send}
               </button>
 
               <p aria-live="polite" className="text-sm text-center min-h-5">
                 {status === "error" && (
-                  <span className="text-danger">Algo deu errado. Tenta de novo ou manda um email direto.</span>
+                  <span className="text-danger">{t.error}</span>
                 )}
               </p>
             </form>
