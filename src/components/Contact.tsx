@@ -88,6 +88,15 @@ export default function Contact() {
 
           <Reveal delay={0.1}>
             <form onSubmit={handleSubmit} className="pixel-box p-6 md:p-8 space-y-5">
+              {/* Honeypot do Formspree: invisível para pessoas, bots que preenchem tudo são descartados */}
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+                className="hidden"
+              />
               <div className="flex items-center gap-3 pb-1">
                 <span className="w-3 h-3 bg-gold animate-twinkle" />
                 <span className="font-pixel text-sm uppercase tracking-widest text-gold">Salvar progresso</span>
