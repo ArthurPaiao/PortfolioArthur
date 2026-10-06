@@ -9,6 +9,7 @@ export const certifications: Certification[] = [
   { title: "Spring Boot Expert: JPA, REST, JWT, OAuth2", issuer: "Udemy — Douglas Sousa", icon: "server" },
   { title: "Java Completo: POO + Projetos", issuer: "Udemy — Nelio Alves", icon: "coffee" },
   { title: "Python do Básico ao Avançado", issuer: "Udemy", icon: "code" },
+  { title: "Web Development", issuer: "Udemy", icon: "globe" },
   { title: "Git e GitHub: Formação Básica", issuer: "LinkedIn Learning", icon: "git-branch" },
   { title: "AI Intelligence Fundamentals", issuer: "IBM", icon: "award" },
   { title: "Transformação Digital", issuer: "Santander", icon: "award" },
