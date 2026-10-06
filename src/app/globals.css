@@ -24,6 +24,7 @@
   --accent-fg: #ffffff;
   --accent-2: #0b8fb3;
   --gold: #b97a00;
+  --danger: #c0262d;
   --glow: rgba(214, 51, 108, 0.14);
   --bevel-hi: rgba(255, 255, 255, 0.9);
   --bevel-lo: rgba(28, 21, 55, 0.08);
@@ -58,6 +59,7 @@
   --accent-fg: #2a0b1c;
   --accent-2: #6ee7f9;
   --gold: #ffd166;
+  --danger: #ff8a8a;
   --glow: rgba(255, 111, 174, 0.16);
   --bevel-hi: rgba(255, 255, 255, 0.06);
   --bevel-lo: rgba(0, 0, 0, 0.3);
@@ -95,6 +97,7 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-2: var(--accent-2);
   --color-gold: var(--gold);
+  --color-danger: var(--danger);
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-twinkle: twinkle 2.4s steps(2, jump-none) infinite;

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import PixelArt, { type PixelMap } from "./PixelArt";
 import { moon, sun } from "./icons";
 
@@ -92,9 +92,11 @@ export const GROUND_HEIGHT = 64;
 
 export default function PixelScene() {
   const { scrollY } = useScroll();
-  const y0 = useTransform(scrollY, (v) => v * layers[0].speed);
-  const y1 = useTransform(scrollY, (v) => v * layers[1].speed);
-  const y2 = useTransform(scrollY, (v) => v * layers[2].speed);
+  // Parallax ligado ao scroll não é uma animação, então o MotionConfig não o desliga sozinho
+  const speed = useReducedMotion() ? 0 : 1;
+  const y0 = useTransform(scrollY, (v) => v * layers[0].speed * speed);
+  const y1 = useTransform(scrollY, (v) => v * layers[1].speed * speed);
+  const y2 = useTransform(scrollY, (v) => v * layers[2].speed * speed);
   const ys = [y0, y1, y2];
 
   return (

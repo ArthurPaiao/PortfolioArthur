@@ -140,7 +140,7 @@ export default function Contact() {
 
               <p aria-live="polite" className="text-sm text-center min-h-5">
                 {status === "error" && (
-                  <span className="text-red-500">Algo deu errado. Tenta de novo ou manda um email direto.</span>
+                  <span className="text-danger">Algo deu errado. Tenta de novo ou manda um email direto.</span>
                 )}
               </p>
             </form>

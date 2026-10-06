@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
 type Props = {
   value: string; // aceita "2+", "3", "9" etc.
@@ -11,6 +11,7 @@ type Props = {
 export default function AnimatedCounter({ value, className }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
+  const reduced = useReducedMotion();
   const numericMatch = value.match(/\d+/);
   const numericValue = numericMatch ? parseInt(numericMatch[0], 10) : 0;
   const suffix = value.replace(/^\d+/, "");
@@ -20,10 +21,11 @@ export default function AnimatedCounter({ value, className }: Props) {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(numericValue);
-    }
-  }, [isInView, numericValue, motionValue]);
+    if (!isInView) return;
+    // Com menos movimento, pula direto para o número final em vez de contar a partir do zero
+    if (reduced) springValue.jump(numericValue);
+    else motionValue.set(numericValue);
+  }, [isInView, numericValue, motionValue, springValue, reduced]);
 
   useEffect(() => {
     return springValue.on("change", (latest) => {
