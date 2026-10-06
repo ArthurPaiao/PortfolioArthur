@@ -30,7 +30,7 @@ Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
 ## Currículo
 
-O currículo em PDF está disponível [neste repositório](./cv.pdf) e também acessível pelo próprio site.
+O currículo em PDF está disponível [neste repositório](./public/cv.pdf) e também acessível pelo próprio site.
 
 ## Contato
 
